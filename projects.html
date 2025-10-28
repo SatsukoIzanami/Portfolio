@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/theme.css" />
+  <script type="module" src="components/nav/nav-bar.js"></script>
+  <script type="module" src="components/projects/projects-grid.js"></script>
+  <title>Projects — JL Portfolio</title>
+</head>
+
+<body>
+  <app-nav></app-nav>
+  <main class="container">
+    <div class="page-header">
+      <div>
+        <h1>Projects</h1>
+        <p class="page-sub">Selected work from courses and personal builds.</p>
+      </div>
+    </div>
+
+    <projects-grid api="/api/projects"></projects-grid>
+  </main>
+
+  <footer class="container" style="color:var(--muted)">
+    © 2025 Jessica Lecker — Built with native Web Components
+  </footer>
+</body>
+</html>

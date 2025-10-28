@@ -1,0 +1,44 @@
+{
+  "bio": {
+    "headline": "Jessica Lecker",
+    "subline": "Full-stack student developer",
+    "body": "After high school, my career focus was on customer service for many years. I assisted in managing a food service venue for five years before I switched career paths into administrative management. After five years managing the Student Records department at Job Corps, I chose to invest in my education and explore Software Development. <br><br> I will be graduating with an Associates Degree in Software Development in 2025 and plan on continuing my education in University.",
+    "avatar": "./images/projz.png"
+  },
+  "skills": {
+    "categories": [
+      { "title": "Soft Skills", "items": [
+        { "label": "Problem Solving", "value": 3 },
+        { "label": "Communication", "value": 3 },
+        { "label": "Customer Service", "value": 3 },
+        { "label": "Teamwork", "value": 2 },
+        { "label": "Organization", "value": 3 }
+      ]},
+      { "title": "Languages", "items": [
+        { "label": "C#", "value": 3 },
+        { "label": "JavaScript", "value": 2 },
+        { "label": "SQL", "value": 2 }
+      ]},
+      { "title": "Frameworks & Tools", "items": [
+        { "label": "WPF/MVVM", "value": 2 },
+        { "label": "ASP.NET", "value": 2 },
+        { "label": "Node/Express", "value": 1 }
+      ]}
+    ]
+  },
+  "endorsements": [
+    
+    { "quote": "Jessica is an amazing teammate who consistently brings her best effort to each project. Her persistence in overcoming challenges and her dedication to learning is motivating to me. She has inspired me to not give up when things get tough. She is always willing to help others on the team, and the insight she gives is educational and encouraging.",
+      "name": "Delilah",
+      "role": "Project Partner" },
+    { "quote": "Jessica is an incredibly bright and hardworking individual. Her bubbly personality makes her a joy to be around, and she approaches coding challenges with a positive attitude and determination. She has inspired me to not only be a better coder but kinder person.", 
+      "name": "Yeng",
+      "role": "Project Partner" }
+  ],
+  "timeline": [
+    { "company": "NTC Projects", "role": "Student Developer", "start": "2023", "end": "Present",
+      "bullets": ["Built full-stack coursework projects", "Applied patterns: Strategy, Builder, Observer"] },
+    { "company": "Freelance", "role": "Business Management", "start": "2015", "end": "2023",
+      "bullets": ["Business Operations", "Asset Management"] }
+  ]
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/theme.css" />
+  <script type="module" src="components/nav/nav-bar.js"></script>
+  <script type="module" src="components/about/bio.js"></script>
+  <script type="module" src="components/about/skills.js"></script>
+  <script type="module" src="components/about/endorsements.js"></script>
+  <script type="module" src="components/about/employment-timeline.js"></script>
+
+  <title>About — JL Portfolio</title>
+</head>
+<body>
+  <app-nav></app-nav>
+  <main class="container">
+    <about-bio></about-bio>
+    <skills-list min-level="0"></skills-list>
+    <endorsements-list></endorsements-list>
+    <employment-timeline></employment-timeline>
+  </main>
+  <footer class="container" style="color:var(--muted)">
+    © 2025 Jessica Lecker
+  </footer>
+</body>
+</html>

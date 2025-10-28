@@ -1,0 +1,23 @@
+{
+    "projects": [
+      {
+        "img": "images/projport.png",
+        "name": "Portfolio",
+        "year": "2023",
+        "desc": "I created a basic professional portfolio to highlight my experience and future plans."
+      },
+      {
+        "img": "images/projz.png",
+        "name": "C# Coding for a Zoo",
+        "year": "2024",
+        "desc": "This project tested my skills and knowledge in C#."
+      },
+      {
+        "img": "images/Evey.jpg",
+        "name": "Ethical Dilemmas",
+        "year": "2023",
+        "desc": "For this term paper, I researched the ethical complications of animal euthanasia and reflected on my personal experience of euthanizing my family dog."
+      }
+    ]
+  }
+  

@@ -114,7 +114,12 @@ class ProjectsGrid extends HTMLElement {
             const imgEl = document.createElement('img');
             imgEl.className = "media";
             imgEl.alt = (p?.name || "Project") + " thumbnail";
-            if (p?.img) imgEl.src = p.img;
+            if (p?.img) {
+                const base = import.meta.env.BASE_URL;
+                imgEl.src = p.img.startsWith('http')
+                    ? p.img
+                    : `${base}${p.img}`;
+            }
 
             const bodyEl = document.createElement('div');
             bodyEl.className = "body";

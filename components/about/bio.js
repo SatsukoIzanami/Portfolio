@@ -36,10 +36,15 @@ class AboutBio extends HTMLElement {
         const b = data.bio || {};
 
         if (b.avatar){
-          const img = document.createElement('img');
-          img.alt = '';
-          img.src = b.avatar;
-          target.appendChild(img);
+            const img = document.createElement('img');
+            img.alt = '';
+
+            const base = import.meta.env.BASE_URL;
+            img.src = b.avatar.startsWith('http')
+                ? b.avatar
+                : `${base}${b.avatar}`;
+
+            target.appendChild(img);
         }
 
         const right = document.createElement('div');

@@ -1,3 +1,5 @@
+import { loadAboutData } from "./about-data.js";
+
 class EndorsementsList extends HTMLElement{
   constructor(){ super(); this.attachShadow({mode:'open'}); }
 
@@ -28,8 +30,8 @@ class EndorsementsList extends HTMLElement{
   }
 
   async _load(target){
-    let data = { endorsements: [] };
-    try{ data = await fetch('data/about.json',{cache:'no-cache'}).then(r=>r.json()); }catch{}
+    const data = await loadAboutData();
+    if (!data) return;
     const items = data.endorsements || [];
 
     target.textContent = '';

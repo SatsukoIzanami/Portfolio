@@ -1,3 +1,5 @@
+import { loadAboutData } from "./about-data.js";
+
 class SkillsList extends HTMLElement{
 constructor(){
   super();
@@ -33,10 +35,10 @@ constructor(){
   }
 
   async _load(){
-    try{
-      const d = await fetch('data/about.json',{cache:'no-cache'}).then(r=>r.json());
-      this.data = (d.skills && d.skills.categories) ? d.skills.categories : [];
-    }catch{ this.data = []; }
+    const data = await loadAboutData();
+    if (!data) return;
+
+    this.data = (data.skills && data.skills.categories) ? data.skills.categories : [];
     this._render();
   }
 

@@ -1,3 +1,5 @@
+import { loadAboutData } from "./about-data.js";
+
 class EmploymentTimeline extends HTMLElement {
   constructor(){ super(); this.attachShadow({mode:'open'}); }
 
@@ -53,8 +55,8 @@ class EmploymentTimeline extends HTMLElement {
   }
 
   async _load(listEl){
-    let data = { timeline: [] };
-    try { data = await fetch('data/about.json', { cache: 'no-cache' }).then(r=>r.json()); } catch {}
+    const data = await loadAboutData();
+    if (!data) return;
     this._render(listEl, Array.isArray(data.timeline) ? data.timeline : []);
   }
 

@@ -49,8 +49,16 @@ class ProjectsGrid extends HTMLElement {
 
         this.shadowRoot.append(styleEl, this.loadingEl, this.gridEl, this.errorEl);
 
-        // API endpoint
-        this.apiUrl = "http://localhost:2000/api/projects";
+        // Detect correct API endpoint depending on environment
+        const isGitHubPages = window.location.hostname.includes('github.io');
+        const isRender = window.location.hostname.includes('onrender.com');
+
+        // Use Render API when on GitHub Pages, otherwise use local proxy
+        this.apiUrl = isGitHubPages
+        ? 'https://portfolio-awnu.onrender.com/api/projects'
+        : isRender
+            ? '/api/projects'
+            : 'http://localhost:2000/api/projects';
     }
 
     connectedCallback() {

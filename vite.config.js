@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 
 // Detect GitHub Pages build by environment variable
-const isGitHubPages = process.env.BUILD_TARGET === 'github';
+const isGitHubPages = process.env.GITHUB_PAGES === 'true';
 
 export default defineConfig({
     base: isGitHubPages ? '/Portfolio/' : '/',   //root locally, subpath on GH Pages
@@ -10,7 +10,7 @@ export default defineConfig({
         open: true,
         proxy: {
         '/api': {
-            target: 'http://localhost:3000',
+            target: 'http://localhost:2000',
             changeOrigin: true
         }
         }

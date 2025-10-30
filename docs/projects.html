@@ -3,24 +3,27 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Home — JL Portfolio</title>
+  <title>Projects — JL Portfolio</title>
   <script type="module" crossorigin src="/Portfolio/assets/nav-bar-crAhWqTn.js"></script>
   <script type="module" crossorigin src="/Portfolio/assets/projects-grid-CRNRuwKS.js"></script>
   <link rel="stylesheet" crossorigin href="/Portfolio/assets/nav-bar-DmkqWbCJ.css">
 </head>
+
 <body>
   <app-nav></app-nav>
-  <section class="hero container">
-    <h1>Jessica Lecker</h1>
-    <p class="sub">Full-stack student developer. Clean patterns, accessible UIs, and maintainable code.</p>
-    <p>
-      <a class="button" href="about.html">About me →</a>
-      <a class="button" href="projects.html">Projects →</a>
-    </p>
-  </section>
+  <main class="container">
+    <div class="page-header">
+      <div>
+        <h1>Projects</h1>
+        <p class="page-sub">Selected work from courses and personal builds.</p>
+      </div>
+    </div>
+
+    <projects-grid api="/api/projects"></projects-grid>
+  </main>
+
   <footer class="container" style="color:var(--muted)">
     © 2025 Jessica Lecker — Built with native Web Components
   </footer>
 </body>
 </html>
-

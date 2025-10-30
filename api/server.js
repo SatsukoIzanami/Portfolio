@@ -12,7 +12,12 @@ const PORT = process.env.PORT || 2000;
 
 app.use(cors({ 
     origin: [
-        "http://127.0.0.1:5500", "http://localhost:5500", "http://localhost:5173"] }));
+        "http://127.0.0.1:5500", 
+        "http://localhost:5500", 
+        "http://localhost:5173",
+        "https://satsukoizanami.github.io"
+    ] 
+}));
 
 // serve static site
 app.use(express.static(path.join(__dirname, "..")));

@@ -116,12 +116,13 @@ class ContactForm extends HTMLElement {
     const alnumSpaces = '^[A-Za-z0-9 ]+$';                  // Subject allowed chars
     const lettersSpacesHyphens = '^[A-Za-z][A-Za-z -]*$';   // Name allowed chars (letters, spaces, hyphens)
     const emailPattern = '^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$';
-    const phonePattern = '^(\\+?1[\\s.-]?)?(\\(?\\d{3}\\)?[\\s.-]?)?\\d{3}[\\s.-]?\\d{4}$';
+    const phonePattern = /^(?:\+1[-.\s]?)?\(?[2-9]\d{2}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/;
 
-    const fSubject = field('Subject*', 'subject', 'input',  { type:'text', pattern: alnumSpaces,          maxlength:'80',  placeholder:'e.g., Portfolio Inquiry' });
-    const fName    = field('Name*',    'name',    'input',  { type:'text', pattern: lettersSpacesHyphens, maxlength:'60',  placeholder:'e.g., Jane Doe' });
-    const fEmail   = field('Email*',   'email',   'input',  { type:'email',pattern: emailPattern,         maxlength:'120', placeholder:'you@example.com' });
-    const fPhone   = field('Phone*',   'phone',   'input',  { type:'tel',  pattern: phonePattern,        maxlength:'20',  placeholder:'e.g., 715-600-3468' });
+
+    const fSubject = field('Subject*', 'subject', 'input',  { type:'text', pattern: alnumSpaces, maxlength:'80', placeholder:'e.g., Portfolio Inquiry' });
+    const fName    = field('Name*',    'name',    'input',  { type:'text', pattern: lettersSpacesHyphens, maxlength:'60', placeholder:'e.g., Jane Doe' });
+    const fEmail   = field('Email*',   'email',   'input',  { type:'email',pattern: emailPattern, maxlength:'120', placeholder:'you@example.com' });
+    const fPhone   = field('Phone*',   'phone',   'input',  { type:'tel',  pattern: phonePattern, maxlength:'20', placeholder:'e.g., 715-600-3468' });
     const fMsg     = field('Message*', 'message', 'textarea', { maxlength:'1000', placeholder:'How can I help?' });
 
     // live word counter for message

@@ -113,7 +113,7 @@ class ContactForm extends HTMLElement {
       return row;
     };
 
-    const alnumSpaces = '^[A-Za-z0-9 ]+$';                  // Subject/Message allowed chars
+    const alnumSpaces = '^[A-Za-z0-9 ]+$';                  // Subject allowed chars
     const lettersSpacesHyphens = '^[A-Za-z][A-Za-z -]*$';   // Name allowed chars (letters, spaces, hyphens)
     const emailPattern = '^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$';
     const phonePattern = '^(\\+?1[\\s.-]?)?(\\(?\\d{3}\\)?[\\s.-]?)?\\d{3}[\\s.-]?\\d{4}$';
@@ -137,7 +137,7 @@ class ContactForm extends HTMLElement {
     actions.append(submit, reset);
 
     const note = document.createElement('div'); note.className='note';
-    note.textContent = 'Subject ≥ 4 chars. Name ≥ 2 letters. Phone: valid 10-digit number. Message ≥ 10 alphanumeric chars and ≥ 10 words.';
+    note.textContent = 'Subject ≥ 4 chars. Name ≥ 2 letters. Phone: valid 10-digit number. Message ≥ 10 alphanumeric chars, ≥ 10 words, and may include common punctuation.';
 
     const formMsg = document.createElement('div'); formMsg.className = 'form-message'; formMsg.setAttribute('aria-live','polite');
 
@@ -193,7 +193,7 @@ class ContactForm extends HTMLElement {
       if (v.typeMismatch && control.type === 'email') {
         msg = 'Please enter a valid email address.';
       } else if (v.patternMismatch) {
-        if (name === 'subject' || name === 'message') {
+        if (name === 'subject') {
           msg = `${labelMap[name]} may contain letters, numbers, and spaces only.`;
         } else if (name === 'name') {
           msg = 'Name may contain letters, spaces, or hyphens only.';
@@ -212,8 +212,9 @@ class ContactForm extends HTMLElement {
         } else if (name === 'name') {
           if (countLetters(val) < 2) msg = 'Name must have at least 2 letters.';
         } else if (name === 'message') {
-          if (!/^[A-Za-z0-9 \n\r]+$/.test(val)) {
-            msg = 'Message may contain letters, numbers, and spaces only.';
+          // ✅ allow common punctuation in message
+          if (!/^[A-Za-z0-9 ,.!?'"()\-\n\r]+$/.test(val)) {
+            msg = 'Message may contain letters, numbers, spaces, and common punctuation.';
           } else if (countAlnum(val) < 10) {
             msg = 'Message must have at least 10 letters/numbers.';
           } else if (countWords(val) < 10) {

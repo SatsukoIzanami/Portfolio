@@ -4,21 +4,25 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/scroll-effects.css">
+
   <script type="module" src="components/nav/nav-bar.js"></script>
   <script type="module" src="components/about/bio.js"></script>
   <script type="module" src="components/about/skills.js"></script>
   <script type="module" src="components/about/endorsements.js"></script>
   <script type="module" src="components/about/employment-timeline.js"></script>
+  <script src="components/about/scroll-effects.js" defer></script>
+
 
   <title>About — JL Portfolio</title>
 </head>
 <body>
   <app-nav></app-nav>
   <main class="container">
-    <about-bio></about-bio>
-    <skills-list min-level="0"></skills-list>
-    <endorsements-list></endorsements-list>
-    <employment-timeline></employment-timeline>
+    <about-bio class="fade-section"></about-bio>
+    <skills-list class="fade-section" min-level="0"></skills-list>
+    <endorsements-list class="fade-section"></endorsements-list>
+    <employment-timeline class="fade-section"></employment-timeline>
   </main>
   <footer class="container" style="color:var(--muted)">
     © 2025 Jessica Lecker

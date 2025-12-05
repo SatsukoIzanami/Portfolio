@@ -304,7 +304,7 @@ class ContactForm extends HTMLElement {
 		};
 
 		const alnumSpaces = '^[A-Za-z0-9 ]+$';
-		const lettersSpacesHyphens = '^[A-Za-z][A-Za-z -]*$';
+		const lettersSpacesHyphens = '^[A-Za-z][A-Za-z\\- ]*$';
 		const emailPattern = '^[^\\s@]+@[^\\s@]+\\.[^\\s@]{2,}$';
 
 		const fSubject = field('Subject*', 'subject', 'input', { type: 'text', pattern: alnumSpaces, maxlength: '80', placeholder: 'e.g., Portfolio Inquiry' });
@@ -403,7 +403,7 @@ class ContactForm extends HTMLElement {
 						msg = 'Subject must be at least 4 characters (letters/numbers).';
 					}
 				} else if (name === 'name') {
-					if (val.length < 2 || !/^[A-Za-z][A-Za-z -]*$/.test(val)) {
+					if (val.length < 2 || !/^[A-Za-z][A-Za-z\- ]*$/.test(val)) {
 						msg = 'Name must start with a letter and be at least 2 characters.';
 					}
 				} else if (name === 'message') {

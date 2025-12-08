@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/theme.css" />
+  <link rel="stylesheet" href="css/scroll-effects.css">
+  <script type="module" src="components/nav/nav-bar.js"></script>
+  <script type="module" src="components/fun/quiz.js"></script>
+  <script type="module" src="components/fun/encoder.js"></script>
+  <title>Fun — JL Portfolio</title>
+</head>
+<body>
+  <app-nav></app-nav>
+  <main class="container">
+    <div class="page-header">
+      <div>
+        <h1>Fun & Games</h1>
+        <p class="page-sub">Interactive quiz and message encoder/decoder.</p>
+      </div>
+    </div>
+
+    <quiz-game class="fade-section card" style="padding: 24px; margin-bottom: 24px;"></quiz-game>
+    
+    <message-encoder class="fade-section card" style="padding: 24px;"></message-encoder>
+  </main>
+
+  <footer class="container" style="color:var(--muted)">
+    © 2025 Jessica Lecker — Built with native Web Components
+  </footer>
+  <script type="module" src="components/about/scroll-effects.js"></script>
+</body>
+</html>

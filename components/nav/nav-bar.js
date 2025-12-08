@@ -127,6 +127,7 @@ class AppNav extends HTMLElement {
             { href: 'index.html', file: 'index.html', text: 'Home' },
             { href: 'projects.html', file: 'projects.html', text: 'Projects' },
             { href: 'about.html', file: 'about.html', text: 'About' },
+            { href: 'fun.html', file: 'fun.html', text: 'Fun' },
             { href: 'contact.html', file: 'contact.html', text: 'Contact' },
         ];
 

@@ -1,4 +1,4 @@
-import"./nav-bar-crAhWqTn.js";class W extends HTMLElement{constructor(){super();const N=this.attachShadow({mode:"open"});N.innerHTML=`
+import"./nav-bar-Di05nDYh.js";class W extends HTMLElement{constructor(){super();const N=this.attachShadow({mode:"open"});N.innerHTML=`
 			<style>
 				:host {
 					--bg: #040814;

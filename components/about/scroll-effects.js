@@ -60,12 +60,33 @@ function startScrollEffects() {
 }
 
 function waitForCustomElements() {
-  Promise.all([
-    customElements.whenDefined('about-bio'),
-    customElements.whenDefined('skills-list'),
-    customElements.whenDefined('endorsements-list'),
-    customElements.whenDefined('employment-timeline')
-  ]).then(() => {
+  // list of possible custom elements
+  const possibleElements = [
+    'about-bio',
+    'skills-list',
+    'endorsements-list',
+    'employment-timeline',
+    'quiz-game',
+    'message-encoder'
+  ];
+  
+  // check which elements are actually in the DOM
+  const elementsInDOM = possibleElements.filter(tagName => 
+    document.querySelector(tagName) !== null
+  );
+  
+  // create promises only for elements that exist
+  const promises = elementsInDOM.map(tagName => 
+    customElements.whenDefined(tagName)
+  );
+  
+  if (promises.length === 0) {
+    // no custom elements found, just initialize scroll effects
+    setTimeout(initScrollEffects, 150);
+    return;
+  }
+  
+  Promise.all(promises).then(() => {
     // Wait a bit for elements to be fully rendered
     setTimeout(initScrollEffects, 150);
   }).catch(() => {

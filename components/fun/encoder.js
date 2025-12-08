@@ -20,25 +20,36 @@ class MessageEncoder extends HTMLElement {
     style.textContent = `
       :host {
         display: block;
+        color: #e5e7eb;
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      }
+      
+      * {
+        box-sizing: border-box;
       }
 
       .encoder-container {
         display: flex;
         flex-direction: column;
         gap: 20px;
+        width: 100%;
+        visibility: visible;
+        opacity: 1;
       }
 
       h2 {
         margin: 0 0 16px;
-        color: var(--text, #e5e7eb);
+        color: #e5e7eb;
         font-size: clamp(20px, 3vw, 26px);
+        display: block;
       }
 
       .description {
-        color: var(--muted, #9aa4b2);
+        color: #9aa4b2;
         margin: 0 0 20px;
         line-height: 1.6;
         font-size: 0.95rem;
+        display: block;
       }
 
       .shift-control {
@@ -49,9 +60,10 @@ class MessageEncoder extends HTMLElement {
       }
 
       .shift-control label {
-        color: var(--text, #e5e7eb);
+        color: #e5e7eb;
         font-size: 0.95rem;
         white-space: nowrap;
+        display: inline-block;
       }
 
       .shift-input {
@@ -83,9 +95,10 @@ class MessageEncoder extends HTMLElement {
       }
 
       .input-group label {
-        color: var(--text, #e5e7eb);
+        color: #e5e7eb;
         font-size: 0.95rem;
         font-weight: 500;
+        display: block;
       }
 
       textarea {

@@ -75,18 +75,28 @@ class QuizGame extends HTMLElement {
     style.textContent = `
       :host {
         display: block;
+        color: #e5e7eb;
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      }
+      
+      * {
+        box-sizing: border-box;
       }
       
       .quiz-container {
         display: flex;
         flex-direction: column;
         gap: 20px;
+        width: 100%;
+        visibility: visible;
+        opacity: 1;
       }
 
       h2 {
         margin: 0 0 16px;
-        color: var(--text, #e5e7eb);
+        color: #e5e7eb;
         font-size: clamp(20px, 3vw, 26px);
+        display: block;
       }
 
       .question-container {
@@ -97,9 +107,10 @@ class QuizGame extends HTMLElement {
 
       .question-text {
         font-size: 1.1rem;
-        color: var(--text, #e5e7eb);
+        color: #e5e7eb;
         margin: 0;
         line-height: 1.5;
+        display: block;
       }
 
       .options {
@@ -111,14 +122,17 @@ class QuizGame extends HTMLElement {
 
       .option {
         padding: 12px 16px;
-        border: 1px solid var(--border, #1a2440);
+        border: 1px solid #1a2440;
         border-radius: 10px;
         background: #0a1224;
-        color: var(--text, #e5e7eb);
+        color: #e5e7eb;
         cursor: pointer;
         transition: all 0.2s ease;
         text-align: left;
         font-size: 0.95rem;
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
       }
 
       .option:hover:not(:disabled) {

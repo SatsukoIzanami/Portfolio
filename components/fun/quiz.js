@@ -6,6 +6,7 @@ class QuizGame extends HTMLElement {
     // track current question index and score
     this.currentQuestion = 0;
     this.score = 0;
+    this.answered = false;
     // quiz questions with options and correct answer index
     this.questions = [
       {
@@ -63,7 +64,9 @@ class QuizGame extends HTMLElement {
 
   connectedCallback() {
     // render when component is added to page
-    this.render();
+    if (!this.shadowRoot.hasChildNodes()) {
+      this.render();
+    }
   }
 
   render() {
@@ -306,10 +309,7 @@ class QuizGame extends HTMLElement {
       container.appendChild(resultsDiv);
     }
 
-    // clear shadow root and append styles and container
-    while (this.shadowRoot.firstChild) {
-      this.shadowRoot.removeChild(this.shadowRoot.firstChild);
-    }
+    // append styles and container to shadow root
     this.shadowRoot.append(style, container);
   }
 
@@ -356,7 +356,10 @@ class QuizGame extends HTMLElement {
     this.currentQuestion++;
     // set answered flag to false
     this.answered = false;
-    // render new question
+    // clear and render new question
+    while (this.shadowRoot.firstChild) {
+      this.shadowRoot.removeChild(this.shadowRoot.firstChild);
+    }
     this.render();
   }
 
@@ -368,7 +371,10 @@ class QuizGame extends HTMLElement {
     this.score = 0;
     // set answered flag to false
     this.answered = false;
-    // render new quiz
+    // clear and render new quiz
+    while (this.shadowRoot.firstChild) {
+      this.shadowRoot.removeChild(this.shadowRoot.firstChild);
+    }
     this.render();
   }
 }

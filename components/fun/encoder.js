@@ -9,7 +9,9 @@ class MessageEncoder extends HTMLElement {
 
   connectedCallback() {
     // render when component is added to page
-    this.render();
+    if (!this.shadowRoot.hasChildNodes()) {
+      this.render();
+    }
   }
 
   render() {
@@ -261,46 +263,6 @@ class MessageEncoder extends HTMLElement {
     // append input label and textarea to input group
     inputGroup.append(inputLabel, textarea);
 
-    // action buttons
-    const buttonGroup = document.createElement('div');
-    buttonGroup.className = 'button-group';
-
-    // encode button
-    const encodeBtn = document.createElement('button');
-    encodeBtn.className = 'button primary';
-    encodeBtn.textContent = '🔐 Encode';
-    encodeBtn.addEventListener('click', () => {
-      const message = textarea.value;
-      if (message) {
-        outputDisplay.textContent = this.encode(message);
-      }
-    });
-
-    // decode button
-    const decodeBtn = document.createElement('button');
-    decodeBtn.className = 'button secondary';
-    decodeBtn.textContent = '🔓 Decode';
-    decodeBtn.addEventListener('click', () => {
-      const message = textarea.value;
-      if (message) {
-        outputDisplay.textContent = this.decode(message);
-      }
-    });
-
-    // clear button
-    const clearBtn = document.createElement('button');
-    clearBtn.className = 'button';
-    clearBtn.textContent = 'Clear';
-    clearBtn.addEventListener('click', () => {
-      textarea.value = '';
-      outputDisplay.textContent = '';
-      outputDisplay.classList.add('output-placeholder');
-      outputDisplay.textContent = 'Encoded or decoded message will appear here...';
-    });
-
-    // append action buttons to button group
-    buttonGroup.append(encodeBtn, decodeBtn, clearBtn);
-
     // result output area
     const outputGroup = document.createElement('div');
     outputGroup.className = 'output-group';
@@ -316,6 +278,47 @@ class MessageEncoder extends HTMLElement {
 
     // append output label and display area to output group
     outputGroup.append(outputLabel, outputDisplay);
+
+    // action buttons
+    const buttonGroup = document.createElement('div');
+    buttonGroup.className = 'button-group';
+
+    // encode button
+    const encodeBtn = document.createElement('button');
+    encodeBtn.className = 'button primary';
+    encodeBtn.textContent = '🔐 Encode';
+    encodeBtn.addEventListener('click', () => {
+      const message = textarea.value;
+      if (message) {
+        outputDisplay.classList.remove('output-placeholder');
+        outputDisplay.textContent = this.encode(message);
+      }
+    });
+
+    // decode button
+    const decodeBtn = document.createElement('button');
+    decodeBtn.className = 'button secondary';
+    decodeBtn.textContent = '🔓 Decode';
+    decodeBtn.addEventListener('click', () => {
+      const message = textarea.value;
+      if (message) {
+        outputDisplay.classList.remove('output-placeholder');
+        outputDisplay.textContent = this.decode(message);
+      }
+    });
+
+    // clear button
+    const clearBtn = document.createElement('button');
+    clearBtn.className = 'button';
+    clearBtn.textContent = 'Clear';
+    clearBtn.addEventListener('click', () => {
+      textarea.value = '';
+      outputDisplay.classList.add('output-placeholder');
+      outputDisplay.textContent = 'Encoded or decoded message will appear here...';
+    });
+
+    // append action buttons to button group
+    buttonGroup.append(encodeBtn, decodeBtn, clearBtn);
 
     // info box
     const infoBox = document.createElement('div');
@@ -339,10 +342,7 @@ class MessageEncoder extends HTMLElement {
       infoBox
     );
 
-    // clear shadow root and append styles and container
-    while (this.shadowRoot.firstChild) {
-      this.shadowRoot.removeChild(this.shadowRoot.firstChild);
-    }
+    // append styles and container to shadow root
     this.shadowRoot.append(style, container);
   }
 

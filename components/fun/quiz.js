@@ -107,10 +107,12 @@ class QuizGame extends HTMLElement {
 
       .question-text {
         font-size: 1.1rem;
-        color: #e5e7eb;
+        color: #e5e7eb !important;
         margin: 0;
         line-height: 1.5;
         display: block;
+        visibility: visible;
+        opacity: 1;
       }
 
       .options {
@@ -125,7 +127,7 @@ class QuizGame extends HTMLElement {
         border: 1px solid #1a2440;
         border-radius: 10px;
         background: #0a1224;
-        color: #e5e7eb;
+        color: #e5e7eb !important;
         cursor: pointer;
         transition: all 0.2s ease;
         text-align: left;
@@ -133,6 +135,9 @@ class QuizGame extends HTMLElement {
         display: block;
         width: 100%;
         box-sizing: border-box;
+        visibility: visible;
+        opacity: 1;
+        font-family: inherit;
       }
 
       .option:hover:not(:disabled) {
@@ -171,10 +176,14 @@ class QuizGame extends HTMLElement {
         border-radius: 999px;
         border: 1px solid #1b2a4a;
         background: #0a1224;
-        color: #d7dbe6;
-        font-size: var(--size-sm);
+        color: #d7dbe6 !important;
+        font-size: 0.9rem;
         cursor: pointer;
         transition: border-color 0.18s ease, transform 0.18s ease;
+        display: inline-block;
+        visibility: visible;
+        opacity: 1;
+        font-family: inherit;
       }
 
       .button:hover:not(:disabled) {
@@ -191,9 +200,9 @@ class QuizGame extends HTMLElement {
       }
 
       .button.primary {
-        background: linear-gradient(135deg, var(--brand, #6ee7f5) 0%, var(--brand-2, #7aa2ff) 100%);
+        background: linear-gradient(135deg, #6ee7f5 0%, #7aa2ff 100%);
         border-color: transparent;
-        color: #0b1220;
+        color: #0b1220 !important;
         font-weight: 500;
       }
 
@@ -202,8 +211,10 @@ class QuizGame extends HTMLElement {
       }
 
       .progress {
-        color: var(--muted, #9aa4b2);
+        color: #9aa4b2 !important;
         font-size: 0.9rem;
+        display: inline-block;
+        visibility: visible;
       }
 
       .results {
@@ -215,15 +226,18 @@ class QuizGame extends HTMLElement {
         font-size: 2rem;
         font-weight: 600;
         margin: 16px 0;
-        background: linear-gradient(135deg, var(--brand, #6ee7f5), var(--brand-2, #7aa2ff));
+        background: linear-gradient(135deg, #6ee7f5, #7aa2ff);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
+        visibility: visible;
+        opacity: 1;
       }
 
       .score-text {
-        color: var(--muted, #9aa4b2);
+        color: #9aa4b2 !important;
         margin-bottom: 20px;
+        visibility: visible;
       }
     `;
 

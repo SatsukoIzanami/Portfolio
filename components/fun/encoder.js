@@ -60,32 +60,36 @@ class MessageEncoder extends HTMLElement {
       }
 
       .shift-control label {
-        color: #e5e7eb;
+        color: #e5e7eb !important;
         font-size: 0.95rem;
         white-space: nowrap;
         display: inline-block;
+        visibility: visible;
       }
 
       .shift-input {
         flex: 1;
         padding: 8px 12px;
-        border: 1px solid var(--border, #1a2440);
+        border: 1px solid #1a2440;
         border-radius: 8px;
         background: #0a1224;
-        color: var(--text, #e5e7eb);
+        color: #e5e7eb !important;
         font-size: 0.95rem;
         max-width: 100px;
+        visibility: visible;
+        opacity: 1;
       }
 
       .shift-input:focus {
         outline: none;
-        border-color: var(--brand, #6ee7f5);
+        border-color: #6ee7f5;
       }
 
       .shift-note {
-        color: var(--muted, #9aa4b2);
+        color: #9aa4b2 !important;
         font-size: 0.85rem;
         margin: 0 0 20px;
+        visibility: visible;
       }
 
       .input-group {
@@ -105,23 +109,25 @@ class MessageEncoder extends HTMLElement {
         width: 100%;
         min-height: 120px;
         padding: 12px;
-        border: 1px solid var(--border, #1a2440);
+        border: 1px solid #1a2440;
         border-radius: 10px;
         background: #0a1224;
-        color: var(--text, #e5e7eb);
-        font-family: var(--font-sans, monospace);
+        color: #e5e7eb !important;
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
         font-size: 0.95rem;
         line-height: 1.5;
         resize: vertical;
+        visibility: visible;
+        opacity: 1;
       }
 
       textarea:focus {
         outline: none;
-        border-color: var(--brand, #6ee7f5);
+        border-color: #6ee7f5;
       }
 
       textarea::placeholder {
-        color: var(--muted, #9aa4b2);
+        color: #9aa4b2;
       }
 
       .button-group {
@@ -135,11 +141,15 @@ class MessageEncoder extends HTMLElement {
         border-radius: 999px;
         border: 1px solid #1b2a4a;
         background: #0a1224;
-        color: #d7dbe6;
-        font-size: var(--size-sm);
+        color: #d7dbe6 !important;
+        font-size: 0.9rem;
         cursor: pointer;
         transition: border-color 0.18s ease, transform 0.18s ease;
         white-space: nowrap;
+        display: inline-block;
+        visibility: visible;
+        opacity: 1;
+        font-family: inherit;
       }
 
       .button:hover {
@@ -151,9 +161,9 @@ class MessageEncoder extends HTMLElement {
       }
 
       .button.primary {
-        background: linear-gradient(135deg, var(--brand, #6ee7f5) 0%, var(--brand-2, #7aa2ff) 100%);
+        background: linear-gradient(135deg, #6ee7f5 0%, #7aa2ff 100%);
         border-color: transparent;
-        color: #0b1220;
+        color: #0b1220 !important;
         font-weight: 500;
         flex: 1;
         min-width: 120px;
@@ -165,8 +175,8 @@ class MessageEncoder extends HTMLElement {
 
       .button.secondary {
         background: transparent;
-        border-color: var(--brand-2, #7aa2ff);
-        color: var(--brand-2, #7aa2ff);
+        border-color: #7aa2ff;
+        color: #7aa2ff !important;
         flex: 1;
         min-width: 120px;
       }
@@ -183,36 +193,39 @@ class MessageEncoder extends HTMLElement {
         width: 100%;
         min-height: 120px;
         padding: 12px;
-        border: 1px solid var(--border, #1a2440);
+        border: 1px solid #1a2440;
         border-radius: 10px;
         background: #0a1224;
-        color: var(--text, #e5e7eb);
-        font-family: var(--font-sans, monospace);
+        color: #e5e7eb !important;
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
         font-size: 0.95rem;
         line-height: 1.5;
         white-space: pre-wrap;
         word-wrap: break-word;
         overflow-y: auto;
+        visibility: visible;
+        opacity: 1;
       }
 
       .output-placeholder {
-        color: var(--muted, #9aa4b2);
+        color: #9aa4b2 !important;
         font-style: italic;
       }
 
       .info-box {
         padding: 12px;
-        border: 1px solid var(--border, #1a2440);
+        border: 1px solid #1a2440;
         border-radius: 10px;
         background: rgba(122, 162, 255, 0.05);
-        color: var(--muted, #9aa4b2);
+        color: #9aa4b2 !important;
         font-size: 0.9rem;
         line-height: 1.5;
         margin-top: 16px;
+        visibility: visible;
       }
 
       .info-box strong {
-        color: var(--brand, #6ee7f5);
+        color: #6ee7f5 !important;
       }
     `;
 

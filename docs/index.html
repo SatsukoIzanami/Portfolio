@@ -4,20 +4,43 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Home — JL Portfolio</title>
-  <script type="module" crossorigin src="/Portfolio/assets/nav-bar-Di05nDYh.js"></script>
-  <script type="module" crossorigin src="/Portfolio/assets/projects-grid-D5xJyV3a.js"></script>
+  <script type="module" crossorigin src="/Portfolio/assets/main-BORauA-I.js"></script>
+  <link rel="modulepreload" crossorigin href="/Portfolio/assets/nav-bar-Di05nDYh.js">
+  <link rel="modulepreload" crossorigin href="/Portfolio/assets/about-data-C6eybRQ0.js">
   <link rel="stylesheet" crossorigin href="/Portfolio/assets/nav-bar-DmkqWbCJ.css">
+  <link rel="stylesheet" crossorigin href="/Portfolio/assets/main-kbq9AfND.css">
 </head>
 <body>
   <app-nav></app-nav>
+  
+  <!-- Hero Section -->
   <section class="hero container">
     <h1>Jessica Lecker</h1>
     <p class="sub">Full-stack student developer. Clean patterns, accessible UIs, and maintainable code.</p>
     <p>
       <a class="button" href="about.html">About me →</a>
       <a class="button" href="projects.html">Projects →</a>
+      <a class="button" href="contact.html">Contact →</a>
     </p>
   </section>
+
+  <!-- Interactive Showcase -->
+  <div class="container">
+    <interactive-showcase></interactive-showcase>
+  </div>
+
+  <!-- Call to Action Section -->
+  <section class="container" style="margin: 48px auto; text-align: center; padding: 32px 24px;">
+    <h2 style="margin-bottom: 16px;">Let's Connect</h2>
+    <p style="color: var(--muted); margin-bottom: 24px;">
+      Interested in collaborating or learning more about my work?
+    </p>
+    <p>
+      <a class="button" href="contact.html" style="margin: 0 8px;">Get In Touch →</a>
+      <a class="button" href="projects.html" style="margin: 0 8px;">View My Work →</a>
+    </p>
+  </section>
+
   <footer class="container" style="color:var(--muted)">
     © 2025 Jessica Lecker — Built with native Web Components
   </footer>

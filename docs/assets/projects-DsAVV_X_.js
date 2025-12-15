@@ -1,4 +1,4 @@
-class c extends HTMLElement{constructor(){super(),this.attachShadow({mode:"open"});const t=document.createElement("style");t.textContent=`
+import"./nav-bar-Di05nDYh.js";class c extends HTMLElement{constructor(){super(),this.attachShadow({mode:"open"});const t=document.createElement("style");t.textContent=`
         :host{ display:block }
         .projects-grid{
             display:grid; gap:20px;

@@ -119,12 +119,33 @@ class ContactForm extends HTMLElement {
 			return /([a-z])\1{2,}/.test(normalized);
 		};
 
-		// check if phone has all repeating numbers
+		// check if phone has more than 3 repeating digits in any section
 		const hasRepeatingPhoneNumbers = (s) => {
 			const digits = s.replace(/\D/g, '');
 			if (digits.length < 10) return false;
-			// check if all digits are the same
-			return /^(\d)\1+$/.test(digits);
+			
+			// strip leading 1 if present
+			let phoneDigits = digits;
+			if (phoneDigits.length === 11 && phoneDigits.startsWith('1')) {
+				phoneDigits = phoneDigits.slice(1);
+			}
+			
+			if (phoneDigits.length !== 10) return false;
+			
+			// split into sections: area code (3), exchange (3), line (4)
+			const area = phoneDigits.slice(0, 3);
+			const exchange = phoneDigits.slice(3, 6);
+			const line = phoneDigits.slice(6);
+			
+			// check each section for more than 3 repeating digits (4+)
+			// area code: "1111" would be invalid, but "111" is OK
+			if (/(\d)\1{3,}/.test(area)) return true;
+			// exchange: "5555" would be invalid, but "555" is OK
+			if (/(\d)\1{3,}/.test(exchange)) return true;
+			// line: "11111" would be invalid, but "1111" is OK (4 digits max, so this catches 5+)
+			if (/(\d)\1{3,}/.test(line)) return true;
+			
+			return false;
 		};
 
 		const updateMessageCounter = () => {
@@ -219,9 +240,7 @@ class ContactForm extends HTMLElement {
 							} else if (exchange === '000' || line === '0000') {
 								msg = 'Please enter a realistic phone number, not all zeros.';
 							} else if (hasRepeatingPhoneNumbers(phoneVal)) {
-								msg = 'Phone number cannot have all repeating digits (e.g., "111-111-1111").';
-							} else if (/^(\d)\1{9}$/.test(digits)) {
-								msg = 'Please enter a realistic phone number.';
+								msg = 'Phone number cannot have more than 3 repeating digits in any section (area code, exchange, or line number).';
 							}
 						}
 					}

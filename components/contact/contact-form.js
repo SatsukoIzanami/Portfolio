@@ -75,7 +75,7 @@ class ContactForm extends HTMLElement {
 
 		const note = document.createElement('div');
 		note.className = 'contact-form-note';
-		note.textContent = 'Subject ≥ 4 chars. Name ≥ 2 letters. Email must be valid. Phone requires at least 10 numeric chars with valid area code. Message ≥ 10 words, and may include common punctuation.';
+		note.textContent = 'Subject ≥ 4 chars, no 3+ repeating letters. Name ≥ 3 chars, letters/spaces/hyphens only, no numbers, no 3+ repeating letters. Email must be valid. Phone requires at least 10 numeric chars with valid area code, no all-repeating digits. Message ≥ 10 words, no 3+ repeating letters, and may include common punctuation.';
 
 		const formMsg = document.createElement('div');
 		formMsg.className = 'contact-form-message';
@@ -106,6 +106,26 @@ class ContactForm extends HTMLElement {
 
 		const countAlnum = (s) => (s.match(/[A-Za-z0-9]/g) || []).length;
 		const countWords = (s) => (s.trim().match(/\b\w+\b/g) || []).length;
+
+		// check for repeating letters
+		const hasRepeatingLetters = (s) => {
+			const normalized = s.toLowerCase().replace(/[^a-z]/g, '');
+			return /([a-z])\1/.test(normalized);
+		};
+
+		// check for 3+ consecutive repeating letters
+		const hasRepeatingLettersThreePlus = (s) => {
+			const normalized = s.toLowerCase().replace(/[^a-z]/g, '');
+			return /([a-z])\1{2,}/.test(normalized);
+		};
+
+		// check if phone has all repeating numbers
+		const hasRepeatingPhoneNumbers = (s) => {
+			const digits = s.replace(/\D/g, '');
+			if (digits.length < 10) return false;
+			// check if all digits are the same
+			return /^(\d)\1+$/.test(digits);
+		};
 
 		const updateMessageCounter = () => {
 			const val = msgControl.value || '';
@@ -143,10 +163,18 @@ class ContactForm extends HTMLElement {
 				if (name === 'subject') {
 					if (val.length < 4 || countAlnum(val) < 4) {
 						msg = 'Subject must be at least 4 characters (letters/numbers).';
+					} else if (hasRepeatingLettersThreePlus(val)) {
+						msg = 'Subject cannot contain 3 or more consecutive repeating letters (e.g., "aaa").';
 					}
 				} else if (name === 'name') {
-					if (val.length < 2 || !/^[A-Za-z][A-Za-z\- ]*$/.test(val)) {
-						msg = 'Name must start with a letter and be at least 2 characters.';
+					if (val.length < 3) {
+						msg = 'Name must be at least 3 characters long.';
+					} else if (!/^[A-Za-z][A-Za-z\- ]*$/.test(val)) {
+						msg = 'Name may contain letters, spaces, or hyphens only (no numbers).';
+					} else if (/\d/.test(val)) {
+						msg = 'Name cannot contain numbers.';
+					} else if (hasRepeatingLettersThreePlus(val)) {
+						msg = 'Name cannot contain 3 or more consecutive repeating letters (e.g., "aaa").';
 					}
 				} else if (name === 'message') {
 					if (!/^[A-Za-z0-9 ,.!?'"()\-\n\r]+$/.test(val)) {
@@ -155,6 +183,8 @@ class ContactForm extends HTMLElement {
 						msg = 'Message must have at least 10 letters/numbers.';
 					} else if (countWords(val) < 10) {
 						msg = 'Message must contain at least 10 words.';
+					} else if (hasRepeatingLettersThreePlus(val)) {
+						msg = 'Message cannot contain 3 or more consecutive repeating letters (e.g., "aaa").';
 					}
 				} else if (name === 'email') {
 					if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(val)) {
@@ -188,6 +218,8 @@ class ContactForm extends HTMLElement {
 								msg = 'Phone number prefix must start with digits 2–9.';
 							} else if (exchange === '000' || line === '0000') {
 								msg = 'Please enter a realistic phone number, not all zeros.';
+							} else if (hasRepeatingPhoneNumbers(phoneVal)) {
+								msg = 'Phone number cannot have all repeating digits (e.g., "111-111-1111").';
 							} else if (/^(\d)\1{9}$/.test(digits)) {
 								msg = 'Please enter a realistic phone number.';
 							}

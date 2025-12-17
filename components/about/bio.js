@@ -40,14 +40,19 @@ class AboutBio extends HTMLElement {
         }
 
         const right = document.createElement('div');
-        const h3 = document.createElement('h3'); h3.style.margin = '0 0 6px'; h3.textContent = b.headline || '';
+        const h3 = document.createElement('h3');
+        h3.textContent = b.headline || '';
         right.appendChild(h3);
 
         if (b.subline){
-          const sub = document.createElement('div'); sub.textContent = b.subline; right.appendChild(sub);
+          const sub = document.createElement('div');
+          sub.textContent = b.subline;
+          right.appendChild(sub);
         }
         if (b.body){
-          const p = document.createElement('p'); p.style.marginTop = '10px'; p.textContent = b.body; right.appendChild(p);
+          const p = document.createElement('p');
+          p.textContent = b.body;
+          right.appendChild(p);
         }
         target.appendChild(right);
     }

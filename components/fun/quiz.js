@@ -2,7 +2,6 @@
 class QuizGame extends HTMLElement {
   constructor() {
     super();
-    this.attachShadow({ mode: 'open' });
     // track current question index and score
     this.currentQuestion = 0;
     this.score = 0;
@@ -64,183 +63,12 @@ class QuizGame extends HTMLElement {
 
   connectedCallback() {
     // render when component is added to page
-    if (!this.shadowRoot.hasChildNodes()) {
+    if (!this.hasChildNodes()) {
       this.render();
     }
   }
 
   render() {
-    // create component styles
-    const style = document.createElement('style');
-    style.textContent = `
-      :host {
-        display: block;
-        color: #e5e7eb;
-        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      }
-      
-      * {
-        box-sizing: border-box;
-      }
-      
-      .quiz-container {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        width: 100%;
-        visibility: visible;
-        opacity: 1;
-      }
-
-      h2 {
-        margin: 0 0 16px;
-        color: #e5e7eb;
-        font-size: clamp(20px, 3vw, 26px);
-        display: block;
-      }
-
-      .question-container {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-      }
-
-      .question-text {
-        font-size: 1.1rem;
-        color: #e5e7eb !important;
-        margin: 0;
-        line-height: 1.5;
-        display: block;
-        visibility: visible;
-        opacity: 1;
-      }
-
-      .options {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        margin-top: 8px;
-      }
-
-      .option {
-        padding: 12px 16px;
-        border: 1px solid #1a2440;
-        border-radius: 10px;
-        background: #0a1224;
-        color: #e5e7eb !important;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        text-align: left;
-        font-size: 0.95rem;
-        display: block;
-        width: 100%;
-        box-sizing: border-box;
-        visibility: visible;
-        opacity: 1;
-        font-family: inherit;
-      }
-
-      .option:hover:not(:disabled) {
-        border-color: #2a4478;
-        background: #0f172a;
-        transform: translateX(4px);
-      }
-
-      .option:disabled {
-        cursor: not-allowed;
-        opacity: 0.7;
-      }
-
-      .option.correct {
-        background: rgba(34, 197, 94, 0.15);
-        border-color: #22c55e;
-        color: #22c55e;
-      }
-
-      .option.incorrect {
-        background: rgba(239, 68, 68, 0.15);
-        border-color: #ef4444;
-        color: #ef4444;
-      }
-
-      .controls {
-        display: flex;
-        gap: 12px;
-        align-items: center;
-        justify-content: space-between;
-        margin-top: 8px;
-      }
-
-      .button {
-        padding: 10px 18px;
-        border-radius: 999px;
-        border: 1px solid #1b2a4a;
-        background: #0a1224;
-        color: #d7dbe6 !important;
-        font-size: 0.9rem;
-        cursor: pointer;
-        transition: border-color 0.18s ease, transform 0.18s ease;
-        display: inline-block;
-        visibility: visible;
-        opacity: 1;
-        font-family: inherit;
-      }
-
-      .button:hover:not(:disabled) {
-        border-color: #2a4478;
-      }
-
-      .button:active:not(:disabled) {
-        transform: translateY(1px);
-      }
-
-      .button:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-      }
-
-      .button.primary {
-        background: linear-gradient(135deg, #6ee7f5 0%, #7aa2ff 100%);
-        border-color: transparent;
-        color: #0b1220 !important;
-        font-weight: 500;
-      }
-
-      .button.primary:hover:not(:disabled) {
-        opacity: 0.9;
-      }
-
-      .progress {
-        color: #9aa4b2 !important;
-        font-size: 0.9rem;
-        display: inline-block;
-        visibility: visible;
-      }
-
-      .results {
-        text-align: center;
-        padding: 24px 0;
-      }
-
-      .score-display {
-        font-size: 2rem;
-        font-weight: 600;
-        margin: 16px 0;
-        background: linear-gradient(135deg, #6ee7f5, #7aa2ff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        visibility: visible;
-        opacity: 1;
-      }
-
-      .score-text {
-        color: #9aa4b2 !important;
-        margin-bottom: 20px;
-        visibility: visible;
-      }
-    `;
-
     const container = document.createElement('div');
     container.className = 'quiz-container';
 
@@ -250,19 +78,19 @@ class QuizGame extends HTMLElement {
       const question = this.questions[this.currentQuestion];
       
       const questionDiv = document.createElement('div');
-      questionDiv.className = 'question-container';
+      questionDiv.className = 'quiz-question-container';
 
       const questionText = document.createElement('h3');
-      questionText.className = 'question-text';
+      questionText.className = 'quiz-question';
       questionText.textContent = question.question;
 
       const optionsDiv = document.createElement('div');
-      optionsDiv.className = 'options';
+      optionsDiv.className = 'quiz-options';
 
       // create option buttons for each answer
       question.options.forEach((option, index) => {
         const optionBtn = document.createElement('button');
-        optionBtn.className = 'option';
+        optionBtn.className = 'quiz-option';
         optionBtn.textContent = option;
         optionBtn.dataset.index = index;
         optionBtn.addEventListener('click', () => this.selectAnswer(index));
@@ -271,16 +99,16 @@ class QuizGame extends HTMLElement {
 
       // create controls div for progress and next button
       const controlsDiv = document.createElement('div');
-      controlsDiv.className = 'controls';
+      controlsDiv.className = 'quiz-actions';
 
       // show progress indicator
       const progress = document.createElement('span');
-      progress.className = 'progress';
+      progress.className = 'quiz-progress';
       progress.textContent = `Question ${this.currentQuestion + 1} of ${this.questions.length}`;
 
       // next button disabled until answer selected
       const nextBtn = document.createElement('button');
-      nextBtn.className = 'button primary';
+      nextBtn.className = 'quiz-button primary';
       nextBtn.textContent = this.currentQuestion === this.questions.length - 1 ? 'Finish' : 'Next';
       nextBtn.disabled = true;
       nextBtn.addEventListener('click', () => this.nextQuestion());
@@ -296,24 +124,24 @@ class QuizGame extends HTMLElement {
       // store next button for reference
       this.nextButton = nextBtn;
       // store options for reference
-      this.options = Array.from(optionsDiv.querySelectorAll('.option'));
+      this.options = Array.from(optionsDiv.querySelectorAll('.quiz-option'));
     } else {
       // show results screen after quiz complete
       const resultsDiv = document.createElement('div');
-      resultsDiv.className = 'results';
+      resultsDiv.className = 'quiz-score show';
 
       // create title for results screen
-      const title = document.createElement('h2');
+      const title = document.createElement('h3');
       title.textContent = 'Quiz Complete!';
 
       // create score display
       const scoreDisplay = document.createElement('div');
-      scoreDisplay.className = 'score-display';
+      scoreDisplay.className = 'quiz-score-display';
       scoreDisplay.textContent = `${this.score} / ${this.questions.length}`;
 
       // create score text
       const scoreText = document.createElement('p');
-      scoreText.className = 'score-text';
+      scoreText.className = 'quiz-score-text';
       const percentage = (this.score / this.questions.length) * 100;
       if (percentage === 100) {
         scoreText.textContent = 'Perfect score! 🎉';
@@ -327,7 +155,7 @@ class QuizGame extends HTMLElement {
 
       // create restart button
       const restartBtn = document.createElement('button');
-      restartBtn.className = 'button primary';
+      restartBtn.className = 'quiz-button primary';
       restartBtn.textContent = 'Try Again';
       restartBtn.addEventListener('click', () => this.restart());
 
@@ -337,8 +165,8 @@ class QuizGame extends HTMLElement {
       container.appendChild(resultsDiv);
     }
 
-    // append styles and container to shadow root
-    this.shadowRoot.append(style, container);
+    // append container to component
+    this.appendChild(container);
   }
 
   // select answer and update score
@@ -385,8 +213,8 @@ class QuizGame extends HTMLElement {
     // set answered flag to false
     this.answered = false;
     // clear and render new question
-    while (this.shadowRoot.firstChild) {
-      this.shadowRoot.removeChild(this.shadowRoot.firstChild);
+    while (this.firstChild) {
+      this.removeChild(this.firstChild);
     }
     this.render();
   }
@@ -400,8 +228,8 @@ class QuizGame extends HTMLElement {
     // set answered flag to false
     this.answered = false;
     // clear and render new quiz
-    while (this.shadowRoot.firstChild) {
-      this.shadowRoot.removeChild(this.shadowRoot.firstChild);
+    while (this.firstChild) {
+      this.removeChild(this.firstChild);
     }
     this.render();
   }

@@ -29,6 +29,14 @@ about-bio {
     color: var(--muted, #9aa4b2);
 }
 
+.about-bio-bio h3 {
+    margin: 0 0 6px;
+}
+
+.about-bio-bio p {
+    margin-top: 10px;
+}
+
 .about-bio-bio {
     display: grid;
     grid-template-columns: 96px 1fr;
@@ -76,6 +84,15 @@ skills-list {
 
 .skills-section h2 {
     margin: 0 0 10px;
+}
+
+.skills-category-title {
+    margin: 8px 0 2px;
+    font-weight: 600;
+}
+
+.skills-empty {
+    color: var(--muted, #9aa4b2);
 }
 
 .skills-grid {
@@ -127,6 +144,10 @@ endorsements-list {
 
 .endorsements-section h2 {
     margin: 0 0 10px;
+}
+
+.endorsements-empty {
+    color: var(--muted, #9aa4b2);
 }
 
 .endorsements-list {

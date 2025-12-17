@@ -1,0 +1,131 @@
+/* Navigation Bar Component Styles */
+
+app-nav {
+    --nav-h: calc(56px + env(safe-area-inset-top));
+    display: block;
+}
+
+/* make the nav bar visible + sticky */
+app-nav header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    border-bottom: 1px solid var(--border, #1a2440);
+    background: linear-gradient(180deg, var(--surface, #0f172a), var(--elev, #111a2e));
+}
+
+/* layout wrapper */
+app-nav .nav-wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+/* brand link */
+app-nav .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    letter-spacing: .2px;
+    color: var(--text, #e5e7eb);
+    text-decoration: none;
+}
+
+/* the primary <nav> contains anchors directly */
+app-nav nav {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+app-nav nav a {
+    color: var(--text, #e5e7eb);
+    text-decoration: none;
+    padding: 8px 10px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+}
+
+app-nav nav a:hover {
+    border-color: #2a4478;
+}
+
+/* set .active in JS → style it */
+app-nav nav a.active {
+    border-color: #25355c;
+    background: #0a1224;
+}
+
+/* burger button */
+app-nav .nav-burger {
+    display: none;
+    border: 1px solid var(--border, #1a2440);
+    background: #0a1224;
+    color: var(--text, #e5e7eb);
+    border-radius: 10px;
+    padding: 8px 10px;
+    cursor: pointer;
+}
+
+app-nav .nav-burger .nav-lines {
+    display: inline-block;
+    width: 18px;
+    height: 2px;
+    background: currentColor;
+    box-shadow: 0 6px 0 currentColor, 0 -6px 0 currentColor;
+}
+
+/* mobile sheet + panel */
+app-nav .nav-sheet {
+    position: fixed;
+    inset: 0;
+    display: none;
+    background: rgba(0, 0, 0, .45);
+}
+
+app-nav .nav-sheet.show {
+    display: block;
+}
+
+app-nav .nav-panel {
+    position: absolute;
+    right: 0;
+    top: var(--nav-h);
+    height: calc(100% - var(--nav-h));
+    width: 260px;
+    background: linear-gradient(180deg, var(--surface, #0f172a), var(--elev, #111a2e));
+    border-left: 1px solid var(--border, #1a2440);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+app-nav .nav-panel a {
+    color: var(--text, #e5e7eb);
+    text-decoration: none;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+}
+
+app-nav .nav-panel a.active {
+    border-color: #25355c;
+    background: #0a1224;
+}
+
+@media (max-width: 720px) {
+    app-nav .nav-burger {
+        display: inline-flex;
+        align-items: center;
+    }
+    app-nav nav {
+        display: none;
+    }
+}
+

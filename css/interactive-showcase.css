@@ -241,6 +241,10 @@ interactive-showcase {
     margin: 0;
 }
 
+.interactive-showcase-empty {
+    color: var(--muted, #9aa4b2);
+}
+
 /* About Preview */
 .interactive-showcase-about-content {
     display: grid;

@@ -231,7 +231,7 @@ class InteractiveShowcase extends HTMLElement {
             contentPanel.append(grid, ctaContainer);
         } catch (err) {
             const p = document.createElement('p');
-            p.style.color = 'var(--muted, #9aa4b2)';
+            p.className = 'interactive-showcase-empty';
             p.textContent = 'Unable to load projects.';
             contentPanel.appendChild(p);
         }
@@ -439,7 +439,7 @@ class InteractiveShowcase extends HTMLElement {
         const endorsements = data.endorsements || [];
         if (!endorsements.length) {
             const p = document.createElement('p');
-            p.style.color = 'var(--muted, #9aa4b2)';
+            p.className = 'interactive-showcase-empty';
             p.textContent = 'No endorsements available.';
             contentPanel.appendChild(p);
             return;

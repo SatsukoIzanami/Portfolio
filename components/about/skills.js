@@ -38,7 +38,7 @@ constructor(){
 
     if (!this.data.length){
       const p = document.createElement('p');
-      p.style.color = 'var(--muted,#9aa4b2)';
+      p.className = 'skills-empty';
       p.textContent = 'No skills listed.';
       holder.appendChild(p);
       return;
@@ -46,8 +46,7 @@ constructor(){
 
     this.data.forEach(cat=>{
       const title = document.createElement('div');
-      title.style.margin = '8px 0 2px';
-      title.style.fontWeight = '600';
+      title.className = 'skills-category-title';
       title.textContent = cat.title || cat.name || 'Skills';
       holder.appendChild(title);
 

@@ -28,7 +28,9 @@ class EndorsementsList extends HTMLElement{
 
     target.textContent = '';
     if (!items.length){
-      const p = document.createElement('p'); p.style.color = 'var(--muted,#9aa4b2)'; p.textContent = 'No endorsements yet.';
+      const p = document.createElement('p');
+      p.className = 'endorsements-empty';
+      p.textContent = 'No endorsements yet.';
       target.appendChild(p);
       return;
     }

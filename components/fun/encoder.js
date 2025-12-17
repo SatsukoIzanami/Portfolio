@@ -2,233 +2,18 @@
 class MessageEncoder extends HTMLElement {
   constructor() {
     super();
-    this.attachShadow({ mode: 'open' });
     // default caesar cipher shift amount
     this.shift = 3;
   }
 
   connectedCallback() {
     // render when component is added to page
-    if (!this.shadowRoot.hasChildNodes()) {
+    if (!this.hasChildNodes()) {
       this.render();
     }
   }
 
   render() {
-    // create component styles
-    const style = document.createElement('style');
-    style.textContent = `
-      :host {
-        display: block;
-        color: #e5e7eb;
-        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      }
-      
-      * {
-        box-sizing: border-box;
-      }
-
-      .encoder-container {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        width: 100%;
-        visibility: visible;
-        opacity: 1;
-      }
-
-      h2 {
-        margin: 0 0 16px;
-        color: #e5e7eb;
-        font-size: clamp(20px, 3vw, 26px);
-        display: block;
-      }
-
-      .description {
-        color: #9aa4b2;
-        margin: 0 0 20px;
-        line-height: 1.6;
-        font-size: 0.95rem;
-        display: block;
-      }
-
-      .shift-control {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        margin-bottom: 8px;
-      }
-
-      .shift-control label {
-        color: #e5e7eb !important;
-        font-size: 0.95rem;
-        white-space: nowrap;
-        display: inline-block;
-        visibility: visible;
-      }
-
-      .shift-input {
-        flex: 1;
-        padding: 8px 12px;
-        border: 1px solid #1a2440;
-        border-radius: 8px;
-        background: #0a1224;
-        color: #e5e7eb !important;
-        font-size: 0.95rem;
-        max-width: 100px;
-        visibility: visible;
-        opacity: 1;
-      }
-
-      .shift-input:focus {
-        outline: none;
-        border-color: #6ee7f5;
-      }
-
-      .shift-note {
-        color: #9aa4b2 !important;
-        font-size: 0.85rem;
-        margin: 0 0 20px;
-        visibility: visible;
-      }
-
-      .input-group {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-      }
-
-      .input-group label {
-        color: #e5e7eb;
-        font-size: 0.95rem;
-        font-weight: 500;
-        display: block;
-      }
-
-      textarea {
-        width: 100%;
-        min-height: 120px;
-        padding: 12px;
-        border: 1px solid #1a2440;
-        border-radius: 10px;
-        background: #0a1224;
-        color: #e5e7eb !important;
-        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-        font-size: 0.95rem;
-        line-height: 1.5;
-        resize: vertical;
-        visibility: visible;
-        opacity: 1;
-      }
-
-      textarea:focus {
-        outline: none;
-        border-color: #6ee7f5;
-      }
-
-      textarea::placeholder {
-        color: #9aa4b2;
-      }
-
-      .button-group {
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-      }
-
-      .button {
-        padding: 10px 18px;
-        border-radius: 999px;
-        border: 1px solid #1b2a4a;
-        background: #0a1224;
-        color: #d7dbe6 !important;
-        font-size: 0.9rem;
-        cursor: pointer;
-        transition: border-color 0.18s ease, transform 0.18s ease;
-        white-space: nowrap;
-        display: inline-block;
-        visibility: visible;
-        opacity: 1;
-        font-family: inherit;
-      }
-
-      .button:hover {
-        border-color: #2a4478;
-      }
-
-      .button:active {
-        transform: translateY(1px);
-      }
-
-      .button.primary {
-        background: linear-gradient(135deg, #6ee7f5 0%, #7aa2ff 100%);
-        border-color: transparent;
-        color: #0b1220 !important;
-        font-weight: 500;
-        flex: 1;
-        min-width: 120px;
-      }
-
-      .button.primary:hover {
-        opacity: 0.9;
-      }
-
-      .button.secondary {
-        background: transparent;
-        border-color: #7aa2ff;
-        color: #7aa2ff !important;
-        flex: 1;
-        min-width: 120px;
-      }
-
-      .button.secondary:hover {
-        background: rgba(122, 162, 255, 0.1);
-      }
-
-      .output-group {
-        margin-top: 8px;
-      }
-
-      .output-display {
-        width: 100%;
-        min-height: 120px;
-        padding: 12px;
-        border: 1px solid #1a2440;
-        border-radius: 10px;
-        background: #0a1224;
-        color: #e5e7eb !important;
-        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-        font-size: 0.95rem;
-        line-height: 1.5;
-        white-space: pre-wrap;
-        word-wrap: break-word;
-        overflow-y: auto;
-        visibility: visible;
-        opacity: 1;
-      }
-
-      .output-placeholder {
-        color: #9aa4b2 !important;
-        font-style: italic;
-      }
-
-      .info-box {
-        padding: 12px;
-        border: 1px solid #1a2440;
-        border-radius: 10px;
-        background: rgba(122, 162, 255, 0.05);
-        color: #9aa4b2 !important;
-        font-size: 0.9rem;
-        line-height: 1.5;
-        margin-top: 16px;
-        visibility: visible;
-      }
-
-      .info-box strong {
-        color: #6ee7f5 !important;
-      }
-    `;
-
     const container = document.createElement('div');
     container.className = 'encoder-container';
 
@@ -236,12 +21,12 @@ class MessageEncoder extends HTMLElement {
     title.textContent = 'Message Encoder/Decoder';
 
     const description = document.createElement('p');
-    description.className = 'description';
+    description.className = 'encoder-description';
     description.textContent = 'Encrypt or decrypt messages using a Caesar cipher. Each letter is shifted by a number of positions in the alphabet.';
 
     // shift amount control
     const shiftControl = document.createElement('div');
-    shiftControl.className = 'shift-control';
+    shiftControl.className = 'encoder-shift-control';
 
     const shiftLabel = document.createElement('label');
     shiftLabel.setAttribute('for', 'shift-input');
@@ -250,7 +35,7 @@ class MessageEncoder extends HTMLElement {
     const shiftInput = document.createElement('input');
     shiftInput.type = 'number';
     shiftInput.id = 'shift-input';
-    shiftInput.className = 'shift-input';
+    shiftInput.className = 'encoder-shift-input';
     shiftInput.min = '1';
     shiftInput.max = '25';
     shiftInput.value = this.shift;
@@ -268,12 +53,12 @@ class MessageEncoder extends HTMLElement {
 
     // shift amount note
     const shiftNote = document.createElement('p');
-    shiftNote.className = 'shift-note';
+    shiftNote.className = 'encoder-shift-note';
     shiftNote.textContent = '💡 Tip: Use the same shift amount to encode and decode your message.';
 
     // message input area
     const inputGroup = document.createElement('div');
-    inputGroup.className = 'input-group';
+    inputGroup.className = 'encoder-input-group';
 
     // input label
     const inputLabel = document.createElement('label');
@@ -283,6 +68,7 @@ class MessageEncoder extends HTMLElement {
     // textarea for message input
     const textarea = document.createElement('textarea');
     textarea.id = 'message-input';
+    textarea.className = 'encoder-textarea';
     textarea.placeholder = 'Enter your message here...';
     textarea.setAttribute('rows', '5');
 
@@ -291,7 +77,7 @@ class MessageEncoder extends HTMLElement {
 
     // result output area
     const outputGroup = document.createElement('div');
-    outputGroup.className = 'output-group';
+    outputGroup.className = 'encoder-output-group';
 
     // output label
     const outputLabel = document.createElement('label');
@@ -299,7 +85,7 @@ class MessageEncoder extends HTMLElement {
 
     // output display area
     const outputDisplay = document.createElement('div');
-    outputDisplay.className = 'output-display output-placeholder';
+    outputDisplay.className = 'encoder-output-display encoder-output-placeholder';
     outputDisplay.textContent = 'Encoded or decoded message will appear here...';
 
     // append output label and display area to output group
@@ -307,39 +93,39 @@ class MessageEncoder extends HTMLElement {
 
     // action buttons
     const buttonGroup = document.createElement('div');
-    buttonGroup.className = 'button-group';
+    buttonGroup.className = 'encoder-button-group';
 
     // encode button
     const encodeBtn = document.createElement('button');
-    encodeBtn.className = 'button primary';
+    encodeBtn.className = 'encoder-button primary';
     encodeBtn.textContent = '🔐 Encode';
     encodeBtn.addEventListener('click', () => {
       const message = textarea.value;
       if (message) {
-        outputDisplay.classList.remove('output-placeholder');
+        outputDisplay.classList.remove('encoder-output-placeholder');
         outputDisplay.textContent = this.encode(message);
       }
     });
 
     // decode button
     const decodeBtn = document.createElement('button');
-    decodeBtn.className = 'button secondary';
+    decodeBtn.className = 'encoder-button secondary';
     decodeBtn.textContent = '🔓 Decode';
     decodeBtn.addEventListener('click', () => {
       const message = textarea.value;
       if (message) {
-        outputDisplay.classList.remove('output-placeholder');
+        outputDisplay.classList.remove('encoder-output-placeholder');
         outputDisplay.textContent = this.decode(message);
       }
     });
 
     // clear button
     const clearBtn = document.createElement('button');
-    clearBtn.className = 'button';
+    clearBtn.className = 'encoder-button';
     clearBtn.textContent = 'Clear';
     clearBtn.addEventListener('click', () => {
       textarea.value = '';
-      outputDisplay.classList.add('output-placeholder');
+      outputDisplay.classList.add('encoder-output-placeholder');
       outputDisplay.textContent = 'Encoded or decoded message will appear here...';
     });
 
@@ -348,7 +134,7 @@ class MessageEncoder extends HTMLElement {
 
     // info box
     const infoBox = document.createElement('div');
-    infoBox.className = 'info-box';
+    infoBox.className = 'encoder-info-box';
     const infoStrong = document.createElement('strong');
     infoStrong.textContent = 'How it works: ';
     const infoText1 = document.createTextNode('The Caesar cipher shifts each letter by the shift amount. ');
@@ -368,8 +154,8 @@ class MessageEncoder extends HTMLElement {
       infoBox
     );
 
-    // append styles and container to shadow root
-    this.shadowRoot.append(style, container);
+    // append container to component
+    this.appendChild(container);
   }
 
   encode(message) {

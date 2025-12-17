@@ -1,11 +1,23 @@
 {
     "projects": [
       {
+        "img": "images/UXD.png",
+        "name": "UX Design Project - CareConnect Portal",
+        "year": "2025",
+        "desc": "While learning about UX design, I created a prototype for a care connect portal. This project tested my skills and knowledge in UX design."
+      },
+      {
+        "img": "images/jlzoo.png",
+        "name": "JavaScript Project - JL Zoo",
+        "year": "2025",
+        "desc": "This project tested my skills and knowledge in JavaScript. I spent a lot of time on this project and it was a lot of fun to work on."
+      },  
+      {
         "img": "images/projport.png",
         "name": "Portfolio",
         "year": "2023",
         "desc": "I created a basic professional portfolio to highlight my experience and future plans."
-      },
+      },    
       {
         "img": "images/projz.png",
         "name": "C# Coding for a Zoo",

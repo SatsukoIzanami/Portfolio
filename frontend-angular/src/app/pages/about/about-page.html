@@ -2,7 +2,7 @@
   @if (loading()) {
     <p class="muted">Loading profile…</p>
   } @else if (data(); as d) {
-    <div class="about-bio-wrap fade-section">
+    <div class="about-bio-wrap fade-section visible">
       <section class="about-bio-section">
         <h2>About Me</h2>
         <div class="about-bio-bio" id="bio">
@@ -22,7 +22,7 @@
       </section>
     </div>
 
-    <div class="skills-wrap fade-section">
+    <div class="skills-wrap fade-section visible">
       <section class="skills-section">
         <h2>Skills</h2>
         <div id="skills">
@@ -46,7 +46,7 @@
       </section>
     </div>
 
-    <div class="endorsements-wrap fade-section">
+    <div class="endorsements-wrap fade-section visible">
       <section class="endorsements-section">
         <h2>Endorsements</h2>
         <div class="endorsements-list">
@@ -65,8 +65,8 @@
       </section>
     </div>
 
-    <div class="timeline-wrap fade-section">
-      <section class="timeline-section" id="card">
+    <div class="timeline-wrap fade-section visible">
+      <section class="timeline-section show" id="card">
         <h2>Employment Timeline</h2>
         <ul class="timeline-ul" aria-label="Employment timeline">
           @for (j of timeline(); track j.company) {

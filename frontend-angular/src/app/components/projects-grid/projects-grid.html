@@ -1,15 +1,15 @@
-@if (loading) {
+@if (loading()) {
   <div class="projects-grid-status">Loading projects...</div>
 }
-@if (error) {
-  <div class="projects-grid-status">{{ error }}</div>
+@if (error()) {
+  <div class="projects-grid-status">{{ error() }}</div>
 }
-@if (!loading && !error) {
+@if (!loading() && !error()) {
   <section class="projects-grid-grid">
-    @if (items.length === 0) {
+    @if (items().length === 0) {
       <p class="projects-grid-desc">No projects found.</p>
     }
-    @for (p of items; track p.name) {
+    @for (p of items(); track $index) {
       <article class="projects-grid-card">
         @if (p.img) {
           <img

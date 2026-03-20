@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { take } from 'rxjs';
+import { finalize, take } from 'rxjs';
 import { AboutData } from '../../models/about-data';
 import { PortfolioDataService } from '../../services/portfolio-data.service';
 
@@ -22,9 +22,11 @@ export class AboutPage implements OnInit {
   ngOnInit(): void {
     this.portfolio
       .getAboutData()
-      .pipe(take(1))
+      .pipe(
+        take(1),
+        finalize(() => this.loading.set(false))
+      )
       .subscribe((d) => {
-        this.loading.set(false);
         this.data.set(d);
         const body = d?.bio?.body || '';
         this.safeBio.set(

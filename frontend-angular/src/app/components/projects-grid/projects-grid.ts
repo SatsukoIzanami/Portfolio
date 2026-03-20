@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { Project } from '../../models/project';
 import { PortfolioDataService } from '../../services/portfolio-data.service';
 
@@ -12,19 +12,19 @@ import { PortfolioDataService } from '../../services/portfolio-data.service';
 export class ProjectsGrid implements OnInit {
   private readonly portfolio = inject(PortfolioDataService);
 
-  loading = true;
-  error = '';
-  items: Project[] = [];
+  readonly loading = signal(true);
+  readonly error = signal('');
+  readonly items = signal<Project[]>([]);
 
   ngOnInit(): void {
     this.portfolio.getProjects().subscribe({
       next: (list) => {
-        this.items = list;
-        this.loading = false;
+        this.items.set(list);
+        this.loading.set(false);
       },
       error: (err: Error) => {
-        this.loading = false;
-        this.error = `Could not load projects: ${err.message}`;
+        this.loading.set(false);
+        this.error.set(`Could not load projects: ${err.message}`);
       }
     });
   }

@@ -23,8 +23,14 @@ export class PortfolioDataService {
   }
 
   getProjects(): Observable<Project[]> {
-    return this.http.get<ProjectsResponse>(this.apiUrl('/projects')).pipe(
-      map((data) => (Array.isArray(data?.projects) ? data.projects : []))
+    return this.http.get<ProjectsResponse | Project[]>(this.apiUrl('/projects')).pipe(
+      map((data) => {
+        if (Array.isArray(data)) return data;
+        if (data && Array.isArray((data as ProjectsResponse).projects)) {
+          return (data as ProjectsResponse).projects;
+        }
+        return [];
+      })
     );
   }
 

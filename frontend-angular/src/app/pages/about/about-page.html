@@ -26,7 +26,7 @@
       <section class="skills-section">
         <h2>Skills</h2>
         <div id="skills">
-          @for (cat of skillsCategories(); track cat.title) {
+          @for (cat of skillsCategories(); track $index) {
             <div class="skills-category-title">{{ cat.title || cat.name || 'Skills' }}</div>
             <div class="skills-grid">
               @for (it of cat.items || []; track it.label) {

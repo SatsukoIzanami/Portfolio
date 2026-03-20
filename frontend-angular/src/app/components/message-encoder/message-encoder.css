@@ -1,1 +1,5 @@
-/* fun-components.css */
+/* Global fun-components.css targets app-message-encoder */
+:host {
+  display: block;
+  width: 100%;
+}

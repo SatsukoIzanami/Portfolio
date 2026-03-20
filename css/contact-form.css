@@ -1,6 +1,7 @@
 /* Contact Form Component Styles */
-
-contact-form {
+/* Angular host + legacy web component */
+contact-form,
+app-portfolio-contact-form {
     --contact-bg: #040814;
     --contact-fg: #f9fafb;
     --contact-accent: #38bdf8;
@@ -96,6 +97,8 @@ contact-form {
 
 .contact-form-field input,
 .contact-form-field textarea {
+    width: 100%;
+    min-width: 0;
     font: inherit;
     color: var(--contact-fg);
     background-color: var(--contact-field-bg);

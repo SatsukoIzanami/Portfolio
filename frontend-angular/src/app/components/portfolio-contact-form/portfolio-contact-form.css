@@ -1,1 +1,5 @@
-/* Global contact-form.css supplies layout */
+/* Ensure host fills width; tokens live in global contact-form.css on app-portfolio-contact-form */
+:host {
+  display: block;
+  width: 100%;
+}

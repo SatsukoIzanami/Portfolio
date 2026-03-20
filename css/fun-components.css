@@ -1,13 +1,15 @@
 /* Fun Components Styles */
 
 /* Quiz Game Component */
-quiz-game {
+quiz-game,
+app-quiz-game {
     display: block;
     color: #e5e7eb;
     font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
-quiz-game * {
+quiz-game *,
+app-quiz-game * {
     box-sizing: border-box;
 }
 
@@ -20,7 +22,8 @@ quiz-game * {
     opacity: 1;
 }
 
-quiz-game h2 {
+quiz-game h2,
+app-quiz-game h2 {
     margin: 0 0 16px;
     color: #e5e7eb;
     font-size: clamp(20px, 3vw, 26px);
@@ -207,13 +210,15 @@ quiz-game h2 {
 }
 
 /* Message Encoder Component */
-message-encoder {
+message-encoder,
+app-message-encoder {
     display: block;
     color: #e5e7eb;
     font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
-message-encoder * {
+message-encoder *,
+app-message-encoder * {
     box-sizing: border-box;
 }
 
@@ -226,7 +231,8 @@ message-encoder * {
     opacity: 1;
 }
 
-message-encoder h2 {
+message-encoder h2,
+app-message-encoder h2 {
     margin: 0 0 16px;
     color: #e5e7eb;
     font-size: clamp(20px, 3vw, 26px);

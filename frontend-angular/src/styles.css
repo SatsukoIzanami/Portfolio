@@ -1,0 +1,15 @@
+/* Portfolio theme + components (legacy Vite/CSS files) */
+@import url('../../css/theme.css');
+@import url('../../css/nav-bar.css');
+@import url('../../css/home-components.css');
+@import url('../../css/interactive-showcase.css');
+@import url('../../css/projects-grid.css');
+@import url('../../css/about-components.css');
+@import url('../../css/scroll-effects.css');
+@import url('../../css/contact-form.css');
+@import url('../../css/fun-components.css');
+
+/* Small additions for Angular shell */
+main {
+  min-height: 40vh;
+}

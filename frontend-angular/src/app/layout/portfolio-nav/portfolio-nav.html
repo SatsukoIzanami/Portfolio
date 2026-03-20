@@ -1,0 +1,44 @@
+<header>
+  <div class="nav-wrap">
+    <a class="nav-brand" routerLink="/" (click)="closeSheet()">JL • Portfolio</a>
+    <nav aria-label="Primary">
+      @for (link of links; track link.path) {
+        <a
+          [routerLink]="link.path"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: link.exact }"
+          >{{ link.label }}</a
+        >
+      }
+    </nav>
+    <button
+      type="button"
+      class="nav-burger"
+      aria-label="Menu"
+      [attr.aria-expanded]="sheetOpen()"
+      (click)="toggleSheet()"
+    >
+      <span class="nav-lines"></span>
+    </button>
+  </div>
+</header>
+
+<div
+  class="nav-sheet"
+  [class.show]="sheetOpen()"
+  [attr.aria-hidden]="!sheetOpen()"
+  (click)="closeSheet()"
+>
+  <div class="nav-panel" role="menu" (click)="$event.stopPropagation()">
+    @for (link of links; track link.path) {
+      <a
+        role="menuitem"
+        [routerLink]="link.path"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: link.exact }"
+        (click)="closeSheet()"
+        >{{ link.label }}</a
+      >
+    }
+  </div>
+</div>

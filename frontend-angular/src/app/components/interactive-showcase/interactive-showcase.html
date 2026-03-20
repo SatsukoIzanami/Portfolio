@@ -1,0 +1,136 @@
+<div class="interactive-showcase-container">
+  <div class="interactive-showcase-nav-list">
+    @for (item of navItems; track item.id) {
+      <div
+        class="interactive-showcase-nav-item"
+        [class.active]="currentSection() === item.id"
+        (mouseenter)="showSection(item.id)"
+        (click)="showSection(item.id)"
+      >
+        <div class="interactive-showcase-nav-item-title">{{ item.title }}</div>
+        <div class="interactive-showcase-nav-item-desc">{{ item.desc }}</div>
+      </div>
+    }
+  </div>
+
+  <div class="interactive-showcase-content-panel visible">
+    @if (currentSection() === null) {
+      <div class="interactive-showcase-default-message">
+        <h3>👋 Welcome</h3>
+        <p>Hover over an item on the left to explore</p>
+      </div>
+    }
+
+    @if (currentSection() === 'projects') {
+      <h2 class="interactive-showcase-content-item">Featured Projects</h2>
+      @if (projectsError()) {
+        <p class="interactive-showcase-empty">Unable to load projects.</p>
+      } @else {
+        <div class="interactive-showcase-projects-grid interactive-showcase-content-item">
+          @for (p of projectsPreview(); track p.name) {
+            <article class="interactive-showcase-project-card">
+              @if (p.img) {
+                <img
+                  class="interactive-showcase-project-media"
+                  [src]="assetUrl(p.img)"
+                  [alt]="(p.name || 'Project') + ' thumbnail'"
+                />
+              }
+              <div class="interactive-showcase-project-body">
+                <div class="interactive-showcase-project-meta">
+                  <span class="interactive-showcase-project-chip">{{ p.year }}</span>
+                </div>
+                <h3 class="interactive-showcase-project-title">{{ p.name || 'Untitled' }}</h3>
+                <p class="interactive-showcase-project-desc">{{ p.desc }}</p>
+              </div>
+            </article>
+          }
+        </div>
+        <div class="interactive-showcase-cta-container interactive-showcase-content-item">
+          <a class="interactive-showcase-cta-link" routerLink="/projects">View All Projects →</a>
+        </div>
+      }
+    }
+
+    @if (currentSection() === 'skills') {
+      <h2 class="interactive-showcase-content-item">Skills</h2>
+      @if (topSkills().length === 0) {
+        <p class="interactive-showcase-empty">No skills data.</p>
+      } @else {
+        <div class="interactive-showcase-skills-grid interactive-showcase-content-item">
+          @for (skill of topSkills(); track skill.name) {
+            <div class="interactive-showcase-skill-item">
+              <div class="interactive-showcase-skill-name">{{ skill.name }}</div>
+              <div class="interactive-showcase-skill-level">{{ skill.value }}/3</div>
+              <div class="interactive-showcase-skill-bar">
+                <div class="interactive-showcase-skill-fill" [style.width.%]="(skill.value / 3) * 100"></div>
+              </div>
+            </div>
+          }
+        </div>
+        <div class="interactive-showcase-cta-container interactive-showcase-content-item">
+          <a class="interactive-showcase-cta-link" routerLink="/about">View All Skills →</a>
+        </div>
+      }
+    }
+
+    @if (currentSection() === 'about') {
+      <h2 class="interactive-showcase-content-item">About Me</h2>
+      <div class="interactive-showcase-about-content interactive-showcase-content-item">
+        @if (aboutData()?.bio?.avatar) {
+          <img
+            class="interactive-showcase-about-avatar"
+            [src]="assetUrl(aboutData()!.bio!.avatar)"
+            alt=""
+          />
+        }
+        <div class="interactive-showcase-about-text">{{ bioPreview() }}</div>
+      </div>
+      <div class="interactive-showcase-cta-container interactive-showcase-content-item">
+        <a class="interactive-showcase-cta-link" routerLink="/about">Learn More →</a>
+      </div>
+    }
+
+    @if (currentSection() === 'stats') {
+      <h2 class="interactive-showcase-content-item">By The Numbers</h2>
+      <div class="interactive-showcase-stats-grid interactive-showcase-content-item">
+        <div class="interactive-showcase-stat-item">
+          <div class="interactive-showcase-stat-number">{{ stats().projects }}</div>
+          <p class="interactive-showcase-stat-label">Projects</p>
+        </div>
+        <div class="interactive-showcase-stat-item">
+          <div class="interactive-showcase-stat-number">{{ stats().skills }}</div>
+          <p class="interactive-showcase-stat-label">Skills</p>
+        </div>
+        <div class="interactive-showcase-stat-item">
+          <div class="interactive-showcase-stat-number">{{ stats().years }}</div>
+          <p class="interactive-showcase-stat-label">Years Experience</p>
+        </div>
+        <div class="interactive-showcase-stat-item">
+          <div class="interactive-showcase-stat-number">{{ stats().grad }}</div>
+          <p class="interactive-showcase-stat-label">Graduation Year</p>
+        </div>
+      </div>
+      <div class="interactive-showcase-cta-container interactive-showcase-content-item">
+        <a class="interactive-showcase-cta-link" routerLink="/about">View Full Profile →</a>
+      </div>
+    }
+
+    @if (currentSection() === 'endorsement') {
+      <h2 class="interactive-showcase-content-item">What Others Say</h2>
+      @if (featuredEndorsement(); as fe) {
+        <div class="interactive-showcase-endorsement-content interactive-showcase-content-item">
+          <blockquote>{{ fe.quote }}</blockquote>
+          <div class="interactive-showcase-endorser">
+            — {{ fe.name || 'Anonymous' }}{{ fe.role ? ', ' + fe.role : '' }}
+          </div>
+        </div>
+        <div class="interactive-showcase-cta-container interactive-showcase-content-item">
+          <a class="interactive-showcase-cta-link" routerLink="/about">View All Endorsements →</a>
+        </div>
+      } @else {
+        <p class="interactive-showcase-empty">No endorsements available.</p>
+      }
+    }
+  </div>
+</div>

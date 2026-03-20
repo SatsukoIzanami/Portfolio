@@ -1,0 +1,98 @@
+<main class="container">
+  @if (loading()) {
+    <p class="muted">Loading profile…</p>
+  } @else if (data(); as d) {
+    <div class="about-bio-wrap fade-section">
+      <section class="about-bio-section">
+        <h2>About Me</h2>
+        <div class="about-bio-bio" id="bio">
+          @if (avatarUrl()) {
+            <img [src]="avatarUrl()" alt="" />
+          }
+          <div>
+            <h3>{{ d.bio?.headline }}</h3>
+            @if (d.bio?.subline) {
+              <div>{{ d.bio?.subline }}</div>
+            }
+            @if (safeBio()) {
+              <p [innerHTML]="safeBio()"></p>
+            }
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div class="skills-wrap fade-section">
+      <section class="skills-section">
+        <h2>Skills</h2>
+        <div id="skills">
+          @for (cat of skillsCategories(); track cat.title) {
+            <div class="skills-category-title">{{ cat.title || cat.name || 'Skills' }}</div>
+            <div class="skills-grid">
+              @for (it of cat.items || []; track it.label) {
+                @if (num(it.value) >= 0) {
+                  <div class="skills-skill">
+                    <div>{{ it.label }}</div>
+                    <div>{{ it.value }}/3</div>
+                    <div class="skills-bar">
+                      <div class="skills-fill" [style.width.%]="(num(it.value) / 3) * 100"></div>
+                    </div>
+                  </div>
+                }
+              }
+            </div>
+          }
+        </div>
+      </section>
+    </div>
+
+    <div class="endorsements-wrap fade-section">
+      <section class="endorsements-section">
+        <h2>Endorsements</h2>
+        <div class="endorsements-list">
+          @if (endorsements().length === 0) {
+            <p class="endorsements-empty">No endorsements yet.</p>
+          }
+          @for (en of endorsements(); track en.quote) {
+            <div>
+              <blockquote>{{ en.quote }}</blockquote>
+              <div class="endorsements-endorser">
+                — {{ en.name || 'Anonymous' }}{{ en.role ? ', ' + en.role : '' }}
+              </div>
+            </div>
+          }
+        </div>
+      </section>
+    </div>
+
+    <div class="timeline-wrap fade-section">
+      <section class="timeline-section" id="card">
+        <h2>Employment Timeline</h2>
+        <ul class="timeline-ul" aria-label="Employment timeline">
+          @for (j of timeline(); track j.company) {
+            <li class="timeline-li" tabindex="0">
+              <div class="timeline-title">
+                {{ j.start || '' }}{{ j.end ? ' — ' + j.end : ' — Present' }}
+              </div>
+              <div class="timeline-details">
+                @if (j.role || j.company) {
+                  <div>{{ joinRoleCompany(j.role, j.company) }}</div>
+                }
+                @if (j.bullets?.length) {
+                  <ul class="timeline-bullets">
+                    @for (b of j.bullets; track b) {
+                      <li>{{ b }}</li>
+                    }
+                  </ul>
+                }
+              </div>
+            </li>
+          }
+        </ul>
+      </section>
+    </div>
+  } @else {
+    <p class="muted">Could not load profile data.</p>
+  }
+</main>
+<footer class="container site-footer">© 2025 Jessica Lecker</footer>

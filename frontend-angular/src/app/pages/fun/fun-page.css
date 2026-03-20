@@ -1,0 +1,10 @@
+.fun-card {
+  display: block;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.site-footer {
+  color: var(--muted);
+  padding: 24px 0 48px;
+}

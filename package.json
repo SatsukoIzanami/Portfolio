@@ -1,15 +1,14 @@
 {
     "name": "new-portfolio",
     "version": "1.0.0",
-    "description": "Projects API",
+    "description": "Portfolio API + Angular SPA",
     "type": "module",
-    "main": "index.js",
+    "main": "api/server.js",
     "scripts": {
-        "dev": "vite",
-        "build": "cross-env GITHUB_PAGES=true vite build",
-        "preview": "vite preview",
-        "test": "jasmine",
-        "start": "node api/server.js"
+        "dev:ng": "npm --prefix frontend-angular start",
+        "build:ng": "npm --prefix frontend-angular run build",
+        "start": "node api/server.js",
+        "test": "echo \"No root tests (use frontend-angular for ng test)\" && exit 0"
     },
     "author": "Jessica Lecker",
     "license": "ISC",
@@ -18,9 +17,5 @@
         "express": "^5.1.0",
         "nodemon": "^3.1.10"
     },
-    "devDependencies": {
-        "cross-env": "^10.1.0",
-        "jasmine": "^5.12.0",
-        "vite": "^7.1.12"
-    }
+    "devDependencies": {}
 }

@@ -1,0 +1,30 @@
+.cta-block {
+  margin: 48px auto;
+  text-align: center;
+  padding: 32px 24px;
+}
+
+.cta-block h2 {
+  margin-bottom: 16px;
+}
+
+.cta-lede {
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+
+.cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.cta-actions .button {
+  margin: 0;
+}
+
+.site-footer {
+  color: var(--muted);
+  padding-bottom: 32px;
+}

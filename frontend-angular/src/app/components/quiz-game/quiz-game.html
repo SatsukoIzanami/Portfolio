@@ -1,0 +1,38 @@
+<div class="quiz-container">
+  @if (currentQuestion() < questions.length) {
+    <div class="quiz-question-container">
+      <h3 class="quiz-question">{{ questions[currentQuestion()].question }}</h3>
+      <div class="quiz-options">
+        @for (opt of questions[currentQuestion()].options; track $index) {
+          <button
+            type="button"
+            class="quiz-option"
+            [ngClass]="optionClass($index)"
+            [disabled]="answered()"
+            (click)="selectAnswer($index)"
+          >
+            {{ opt }}
+          </button>
+        }
+      </div>
+      <div class="quiz-actions">
+        <span class="quiz-progress">Question {{ currentQuestion() + 1 }} of {{ questions.length }}</span>
+        <button
+          type="button"
+          class="quiz-button primary"
+          [disabled]="!answered()"
+          (click)="next()"
+        >
+          {{ currentQuestion() === questions.length - 1 ? 'Finish' : 'Next' }}
+        </button>
+      </div>
+    </div>
+  } @else {
+    <div class="quiz-score show">
+      <h3>Quiz Complete!</h3>
+      <div class="quiz-score-display">{{ score() }} / {{ questions.length }}</div>
+      <p class="quiz-score-text">{{ resultMessage() }}</p>
+      <button type="button" class="quiz-button primary" (click)="restart()">Try Again</button>
+    </div>
+  }
+</div>

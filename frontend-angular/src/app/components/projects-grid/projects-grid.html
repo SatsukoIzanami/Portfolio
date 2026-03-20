@@ -1,0 +1,31 @@
+@if (loading) {
+  <div class="projects-grid-status">Loading projects...</div>
+}
+@if (error) {
+  <div class="projects-grid-status">{{ error }}</div>
+}
+@if (!loading && !error) {
+  <section class="projects-grid-grid">
+    @if (items.length === 0) {
+      <p class="projects-grid-desc">No projects found.</p>
+    }
+    @for (p of items; track p.name) {
+      <article class="projects-grid-card">
+        @if (p.img) {
+          <img
+            class="projects-grid-media"
+            [src]="imgSrc(p)"
+            [alt]="(p.name || 'Project') + ' thumbnail'"
+          />
+        }
+        <div class="projects-grid-body">
+          <div class="projects-grid-meta">
+            <span class="projects-grid-chip">{{ p.year }}</span>
+          </div>
+          <h3 class="projects-grid-title">{{ p.name || 'Untitled Project' }}</h3>
+          <p class="projects-grid-desc">{{ p.desc }}</p>
+        </div>
+      </article>
+    }
+  </section>
+}

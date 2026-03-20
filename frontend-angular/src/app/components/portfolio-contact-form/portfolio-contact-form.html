@@ -1,0 +1,60 @@
+<div class="contact-form-wrapper">
+  <h2>Let's talk about your project</h2>
+  <p class="contact-form-lede">
+    Have a question, an idea, or a project in mind? Share a few details below—Jessica will follow up personally to talk
+    through next steps.
+  </p>
+
+  <form class="contact-form-form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+    <div class="contact-form-field" [class.is-invalid]="form.controls.subject.invalid && form.controls.subject.touched">
+      <label for="subject">Subject*</label>
+      <input id="subject" type="text" formControlName="subject" maxlength="80" placeholder="e.g., Portfolio Inquiry" />
+      <div class="contact-form-field-error">{{ contactFieldError(form.controls.subject) }}</div>
+    </div>
+
+    <div class="contact-form-field" [class.is-invalid]="form.controls.name.invalid && form.controls.name.touched">
+      <label for="name">Name*</label>
+      <input id="name" type="text" formControlName="name" maxlength="60" placeholder="e.g., Jane Doe" />
+      <div class="contact-form-field-error">{{ contactFieldError(form.controls.name) }}</div>
+    </div>
+
+    <div class="contact-form-field" [class.is-invalid]="form.controls.email.invalid && form.controls.email.touched">
+      <label for="email">Email*</label>
+      <input id="email" type="email" formControlName="email" maxlength="120" placeholder="you@example.com" />
+      <div class="contact-form-field-error">{{ contactFieldError(form.controls.email) }}</div>
+    </div>
+
+    <div class="contact-form-field" [class.is-invalid]="form.controls.phone.invalid && form.controls.phone.touched">
+      <label for="phone">Phone*</label>
+      <input id="phone" type="tel" formControlName="phone" maxlength="20" placeholder="e.g., 715-600-3468" />
+      <div class="contact-form-field-error">{{ contactFieldError(form.controls.phone) }}</div>
+    </div>
+
+    <div class="contact-form-field" [class.is-invalid]="form.controls.message.invalid && form.controls.message.touched">
+      <label for="message">Message*</label>
+      <textarea id="message" rows="6" formControlName="message" maxlength="1000" placeholder="How can I help?"></textarea>
+      <div class="contact-form-msg-counter">Words: {{ wordCount() }} / 10 minimum</div>
+      <div class="contact-form-field-error">{{ contactFieldError(form.controls.message) }}</div>
+    </div>
+
+    <div class="contact-form-actions">
+      <button class="btn" type="submit">Send</button>
+      <button class="btn ghost" type="button" (click)="form.reset()">Reset</button>
+    </div>
+
+    <div class="contact-form-note">
+      Subject ≥ 4 chars, no 3+ repeating letters. Name ≥ 3 chars, letters/spaces/hyphens only, no numbers, no 3+
+      repeating letters. Email must be valid. Phone requires at least 10 numeric chars with valid area code, no
+      all-repeating digits. Message ≥ 10 words, no 3+ repeating letters, and may include common punctuation.
+    </div>
+
+    <div
+      class="contact-form-message"
+      [class.visible]="!!formMessage"
+      [class.error]="submitted && form.invalid"
+      [class.success]="formSuccess"
+    >
+      {{ formMessage }}
+    </div>
+  </form>
+</div>

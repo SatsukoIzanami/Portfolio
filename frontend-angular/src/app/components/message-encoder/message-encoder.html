@@ -1,0 +1,52 @@
+<div class="encoder-container">
+  <h2>Message Encoder/Decoder</h2>
+  <p class="encoder-description">
+    Encrypt or decrypt messages using a Caesar cipher. Each letter is shifted by a number of positions in the alphabet.
+  </p>
+
+  <div class="encoder-shift-control">
+    <label for="shift-input">Shift Amount:</label>
+    <input
+      id="shift-input"
+      type="number"
+      class="encoder-shift-input"
+      min="1"
+      max="25"
+      [(ngModel)]="shiftAmount"
+    />
+  </div>
+  <p class="encoder-shift-note">💡 Tip: Use the same shift amount to encode and decode your message.</p>
+
+  <div class="encoder-input-group">
+    <label for="message-input">Your Message:</label>
+    <textarea
+      id="message-input"
+      class="encoder-textarea"
+      rows="5"
+      placeholder="Enter your message here..."
+      [(ngModel)]="message"
+    ></textarea>
+  </div>
+
+  <div class="encoder-button-group">
+    <button type="button" class="encoder-button primary" (click)="encode()">🔐 Encode</button>
+    <button type="button" class="encoder-button secondary" (click)="decode()">🔓 Decode</button>
+    <button type="button" class="encoder-button" (click)="clear()">Clear</button>
+  </div>
+
+  <div class="encoder-output-group">
+    <label>Result:</label>
+    <div
+      class="encoder-output-display"
+      [class.encoder-output-placeholder]="placeholderOutput()"
+    >
+      {{ placeholderOutput() ? 'Encoded or decoded message will appear here...' : output() }}
+    </div>
+  </div>
+
+  <div class="encoder-info-box">
+    <strong>How it works: </strong>
+    The Caesar cipher shifts each letter by the shift amount. For example, with a shift of 3, "A" becomes "D", "B"
+    becomes "E", and so on. Numbers, spaces, and punctuation remain unchanged.
+  </div>
+</div>

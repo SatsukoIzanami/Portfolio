@@ -45,6 +45,7 @@ using (var scope = app.Services.CreateScope())
     db.Database.Migrate();
     var seeder = scope.ServiceProvider.GetRequiredService<ProjectSeedService>();
     await seeder.SeedProjectsFromJsonIfEmptyAsync();
+    await seeder.SeedAboutFromJsonIfEmptyAsync();
 }
 
 app.UseCors();

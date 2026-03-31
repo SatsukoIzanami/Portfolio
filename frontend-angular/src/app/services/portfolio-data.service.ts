@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable, catchError, map, of } from 'rxjs';
-import { getPortfolioApiBase, getPortfolioDataBaseUrl, resolvePortfolioAssetUrl } from '../config/api-base';
+import { getPortfolioApiBase, resolvePortfolioAssetUrl } from '../config/api-base';
 import { AboutData } from '../models/about-data';
 import { Project, ProjectsResponse } from '../models/project';
 
@@ -12,14 +12,6 @@ export class PortfolioDataService {
   private apiUrl(path: string): string {
     const base = getPortfolioApiBase().replace(/\/$/, '');
     return `${base}${path.startsWith('/') ? path : `/${path}`}`;
-  }
-
-  private aboutJsonUrl(): string {
-    const origin = getPortfolioDataBaseUrl();
-    if (origin) {
-      return `${origin}/data/about.json`;
-    }
-    return '/data/about.json';
   }
 
   getProjects(): Observable<Project[]> {
@@ -35,7 +27,7 @@ export class PortfolioDataService {
   }
 
   getAboutData(): Observable<AboutData | null> {
-    return this.http.get<AboutData>(this.aboutJsonUrl()).pipe(
+    return this.http.get<AboutData>(this.apiUrl('/about')).pipe(
       map((d) => d ?? null),
       catchError(() => of(null))
     );

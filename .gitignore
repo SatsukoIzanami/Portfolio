@@ -10,6 +10,13 @@ yarn-error.log*
 pnpm-debug.log*
 package-lock.json
 
+# .NET (Portfolio.Api)
+Portfolio.Api/bin/
+Portfolio.Api/obj/
+Portfolio.Api/appsettings.Local.json
+*.user
+*.suo
+
 # build output
 dist/
 !.github/

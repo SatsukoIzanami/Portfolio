@@ -8,6 +8,7 @@
         "dev:ng": "npm --prefix frontend-angular start",
         "build:ng": "npm --prefix frontend-angular run build",
         "start": "node api/server.js",
+        "start:dotnet": "dotnet run --project Portfolio.Api --launch-profile http",
         "test": "echo \"No root tests (use frontend-angular for ng test)\" && exit 0"
     },
     "author": "Jessica Lecker",

@@ -64,9 +64,15 @@ app-nav nav a.active {
 app-nav nav a[mat-button],
 app-nav .nav-panel a[mat-button] {
     --mdc-text-button-label-text-color: var(--text, #e5e7eb);
+    --mat-text-button-state-layer-color: rgba(224, 242, 254, 0.22);
     color: var(--text, #e5e7eb);
     border: 1px solid transparent;
     border-radius: 10px;
+}
+
+app-nav nav a[mat-button] .mdc-button__label,
+app-nav .nav-panel a[mat-button] .mdc-button__label {
+    color: #eaf7ff !important;
 }
 
 app-nav nav a[mat-button]:hover,
@@ -80,6 +86,11 @@ app-nav .nav-panel a[mat-button].active {
     border-color: #6ee7f5;
     background: linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(122, 162, 255, 0.2));
     box-shadow: 0 6px 14px rgba(56, 189, 248, 0.22);
+}
+
+app-nav nav a[mat-button].active .mdc-button__label,
+app-nav .nav-panel a[mat-button].active .mdc-button__label {
+    color: #f0fbff !important;
 }
 
 /* burger button */
@@ -107,6 +118,7 @@ app-nav .nav-sheet {
     inset: 0;
     display: none;
     background: rgba(0, 0, 0, .45);
+    z-index: 1200;
 }
 
 app-nav .nav-sheet.show {
@@ -125,6 +137,7 @@ app-nav .nav-panel {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    z-index: 1201;
 }
 
 app-nav .nav-panel a {

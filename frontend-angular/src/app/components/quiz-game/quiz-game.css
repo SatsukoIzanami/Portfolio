@@ -3,3 +3,12 @@
   display: block;
   width: 100%;
 }
+
+:host ::ng-deep .quiz-question-container.mdc-card,
+:host ::ng-deep .quiz-score.mdc-card {
+  background: linear-gradient(180deg, #0a1224, #0f172a);
+  border: 1px solid #1a2440;
+  border-radius: 12px;
+  box-shadow: none;
+  padding: 16px;
+}

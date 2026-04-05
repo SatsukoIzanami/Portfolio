@@ -3,3 +3,16 @@
   display: block;
   width: 100%;
 }
+
+.encoder-shift-field {
+  max-width: 220px;
+}
+
+.encoder-message-field {
+  width: 100%;
+}
+
+:host ::ng-deep .encoder-shift-field .mat-mdc-form-field,
+:host ::ng-deep .encoder-message-field .mat-mdc-form-field {
+  width: 100%;
+}

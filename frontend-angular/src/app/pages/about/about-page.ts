@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject, signal } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { finalize, take } from 'rxjs';
 import { AboutData } from '../../models/about-data';
@@ -7,7 +9,7 @@ import { PortfolioDataService } from '../../services/portfolio-data.service';
 
 @Component({
   selector: 'app-about-page',
-  imports: [CommonModule],
+  imports: [CommonModule, MatCardModule, MatProgressBarModule],
   templateUrl: './about-page.html',
   styleUrl: './about-page.css'
 })

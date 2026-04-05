@@ -1,5 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject, signal } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { RouterLink } from '@angular/router';
 import { take } from 'rxjs';
 import { AboutData } from '../../models/about-data';
@@ -8,7 +11,7 @@ import { PortfolioDataService } from '../../services/portfolio-data.service';
 
 @Component({
   selector: 'app-interactive-showcase',
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, MatCardModule, MatProgressBarModule, MatButtonModule],
   templateUrl: './interactive-showcase.html',
   styleUrl: './interactive-showcase.css'
 })

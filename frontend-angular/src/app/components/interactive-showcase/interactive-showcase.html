@@ -28,7 +28,7 @@
       } @else {
         <div class="interactive-showcase-projects-grid interactive-showcase-content-item">
           @for (p of projectsPreview(); track p.name) {
-            <article class="interactive-showcase-project-card">
+            <mat-card class="interactive-showcase-project-card">
               @if (p.img) {
                 <img
                   class="interactive-showcase-project-media"
@@ -43,11 +43,11 @@
                 <h3 class="interactive-showcase-project-title">{{ p.name || 'Untitled' }}</h3>
                 <p class="interactive-showcase-project-desc">{{ p.desc }}</p>
               </div>
-            </article>
+            </mat-card>
           }
         </div>
         <div class="interactive-showcase-cta-container interactive-showcase-content-item">
-          <a class="interactive-showcase-cta-link" routerLink="/projects">View All Projects →</a>
+          <a mat-stroked-button class="interactive-showcase-cta-link" routerLink="/projects">View All Projects →</a>
         </div>
       }
     }
@@ -63,13 +63,13 @@
               <div class="interactive-showcase-skill-name">{{ skill.name }}</div>
               <div class="interactive-showcase-skill-level">{{ skill.value }}/3</div>
               <div class="interactive-showcase-skill-bar">
-                <div class="interactive-showcase-skill-fill" [style.width.%]="(skill.value / 3) * 100"></div>
+                <mat-progress-bar mode="determinate" [value]="(skill.value / 3) * 100"></mat-progress-bar>
               </div>
             </div>
           }
         </div>
         <div class="interactive-showcase-cta-container interactive-showcase-content-item">
-          <a class="interactive-showcase-cta-link" routerLink="/about">View All Skills →</a>
+          <a mat-stroked-button class="interactive-showcase-cta-link" routerLink="/about">View All Skills →</a>
         </div>
       }
     }
@@ -87,7 +87,7 @@
         <div class="interactive-showcase-about-text">{{ bioPreview() }}</div>
       </div>
       <div class="interactive-showcase-cta-container interactive-showcase-content-item">
-        <a class="interactive-showcase-cta-link" routerLink="/about">Learn More →</a>
+        <a mat-stroked-button class="interactive-showcase-cta-link" routerLink="/about">Learn More →</a>
       </div>
     }
 
@@ -112,21 +112,21 @@
         </div>
       </div>
       <div class="interactive-showcase-cta-container interactive-showcase-content-item">
-        <a class="interactive-showcase-cta-link" routerLink="/about">View Full Profile →</a>
+        <a mat-stroked-button class="interactive-showcase-cta-link" routerLink="/about">View Full Profile →</a>
       </div>
     }
 
     @if (currentSection() === 'endorsement') {
       <h2 class="interactive-showcase-content-item">What Others Say</h2>
       @if (featuredEndorsement(); as fe) {
-        <div class="interactive-showcase-endorsement-content interactive-showcase-content-item">
+        <mat-card class="interactive-showcase-endorsement-content interactive-showcase-content-item">
           <blockquote>{{ fe.quote }}</blockquote>
           <div class="interactive-showcase-endorser">
             — {{ fe.name || 'Anonymous' }}{{ fe.role ? ', ' + fe.role : '' }}
           </div>
-        </div>
+        </mat-card>
         <div class="interactive-showcase-cta-container interactive-showcase-content-item">
-          <a class="interactive-showcase-cta-link" routerLink="/about">View All Endorsements →</a>
+          <a mat-stroked-button class="interactive-showcase-cta-link" routerLink="/about">View All Endorsements →</a>
         </div>
       } @else {
         <p class="interactive-showcase-empty">No endorsements available.</p>

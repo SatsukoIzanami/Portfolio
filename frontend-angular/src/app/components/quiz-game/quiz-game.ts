@@ -1,5 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, signal } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 interface QuizQuestion {
   question: string;
@@ -9,7 +12,7 @@ interface QuizQuestion {
 
 @Component({
   selector: 'app-quiz-game',
-  imports: [CommonModule],
+  imports: [CommonModule, MatButtonModule, MatProgressBarModule, MatCardModule],
   templateUrl: './quiz-game.html',
   styleUrl: './quiz-game.css'
 })
@@ -101,5 +104,9 @@ export class QuizGame {
     if (pct >= 80) return 'Great job! 🌟';
     if (pct >= 60) return 'Good effort! 👍';
     return 'Keep practicing! 💪';
+  }
+
+  progressPercent(): number {
+    return ((this.currentQuestion() + 1) / this.questions.length) * 100;
   }
 }

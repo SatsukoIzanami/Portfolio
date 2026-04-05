@@ -7,3 +7,21 @@
   color: var(--muted);
   padding: 2rem 0;
 }
+
+/* Keep Material cards visually identical to existing custom sections */
+:host ::ng-deep .material-about-card.mdc-card {
+  background: linear-gradient(180deg, var(--surface, #0f172a), var(--elev, #111a2e));
+  border: 1px solid var(--border, #1a2440);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+:host ::ng-deep .skills-bar .mdc-linear-progress {
+  height: 8px;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+:host ::ng-deep .skills-bar .mdc-linear-progress__bar-inner {
+  border-color: #60a5fa;
+}

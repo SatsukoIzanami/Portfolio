@@ -3,7 +3,7 @@
     <p class="muted">Loading profile…</p>
   } @else if (data(); as d) {
     <div class="about-bio-wrap fade-section visible">
-      <section class="about-bio-section">
+      <mat-card class="about-bio-section material-about-card">
         <h2>About Me</h2>
         <div class="about-bio-bio" id="bio">
           @if (avatarUrl()) {
@@ -19,11 +19,11 @@
             }
           </div>
         </div>
-      </section>
+      </mat-card>
     </div>
 
     <div class="skills-wrap fade-section visible">
-      <section class="skills-section">
+      <mat-card class="skills-section material-about-card">
         <h2>Skills</h2>
         <div id="skills">
           @for (cat of skillsCategories(); track $index) {
@@ -35,7 +35,7 @@
                     <div>{{ it.label }}</div>
                     <div>{{ it.value }}/3</div>
                     <div class="skills-bar">
-                      <div class="skills-fill" [style.width.%]="(num(it.value) / 3) * 100"></div>
+                      <mat-progress-bar mode="determinate" [value]="(num(it.value) / 3) * 100"></mat-progress-bar>
                     </div>
                   </div>
                 }
@@ -43,11 +43,11 @@
             </div>
           }
         </div>
-      </section>
+      </mat-card>
     </div>
 
     <div class="endorsements-wrap fade-section visible">
-      <section class="endorsements-section">
+      <mat-card class="endorsements-section material-about-card">
         <h2>Endorsements</h2>
         <div class="endorsements-list">
           @if (endorsements().length === 0) {
@@ -62,11 +62,11 @@
             </div>
           }
         </div>
-      </section>
+      </mat-card>
     </div>
 
     <div class="timeline-wrap fade-section visible">
-      <section class="timeline-section show" id="card">
+      <mat-card class="timeline-section show material-about-card" id="card">
         <h2>Employment Timeline</h2>
         <ul class="timeline-ul" aria-label="Employment timeline">
           @for (j of timeline(); track j.company) {
@@ -89,7 +89,7 @@
             </li>
           }
         </ul>
-      </section>
+      </mat-card>
     </div>
   } @else {
     <p class="muted">Could not load profile data.</p>

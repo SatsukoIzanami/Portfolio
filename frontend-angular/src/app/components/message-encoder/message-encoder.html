@@ -5,33 +5,39 @@
   </p>
 
   <div class="encoder-shift-control">
-    <label for="shift-input">Shift Amount:</label>
-    <input
-      id="shift-input"
-      type="number"
-      class="encoder-shift-input"
-      min="1"
-      max="25"
-      [(ngModel)]="shiftAmount"
-    />
+    <mat-form-field appearance="outline" class="encoder-shift-field">
+      <mat-label>Shift Amount</mat-label>
+      <input
+        matInput
+        id="shift-input"
+        type="number"
+        class="encoder-shift-input"
+        min="1"
+        max="25"
+        [(ngModel)]="shiftAmount"
+      />
+    </mat-form-field>
   </div>
   <p class="encoder-shift-note">💡 Tip: Use the same shift amount to encode and decode your message.</p>
 
   <div class="encoder-input-group">
-    <label for="message-input">Your Message:</label>
-    <textarea
-      id="message-input"
-      class="encoder-textarea"
-      rows="5"
-      placeholder="Enter your message here..."
-      [(ngModel)]="message"
-    ></textarea>
+    <mat-form-field appearance="outline" class="encoder-message-field">
+      <mat-label>Your Message</mat-label>
+      <textarea
+        matInput
+        id="message-input"
+        class="encoder-textarea"
+        rows="5"
+        placeholder="Enter your message here..."
+        [(ngModel)]="message"
+      ></textarea>
+    </mat-form-field>
   </div>
 
   <div class="encoder-button-group">
-    <button type="button" class="encoder-button primary" (click)="encode()">🔐 Encode</button>
-    <button type="button" class="encoder-button secondary" (click)="decode()">🔓 Decode</button>
-    <button type="button" class="encoder-button" (click)="clear()">Clear</button>
+    <button mat-raised-button type="button" color="primary" class="encoder-button primary" (click)="encode()">🔐 Encode</button>
+    <button mat-stroked-button type="button" class="encoder-button secondary" (click)="decode()">🔓 Decode</button>
+    <button mat-stroked-button type="button" class="encoder-button" (click)="clear()">Clear</button>
   </div>
 
   <div class="encoder-output-group">
@@ -44,9 +50,9 @@
     </div>
   </div>
 
-  <div class="encoder-info-box">
+  <mat-card class="encoder-info-box">
     <strong>How it works: </strong>
     The Caesar cipher shifts each letter by the shift amount. For example, with a shift of 3, "A" becomes "D", "B"
     becomes "E", and so on. Numbers, spaces, and punctuation remain unchanged.
-  </div>
+  </mat-card>
 </div>

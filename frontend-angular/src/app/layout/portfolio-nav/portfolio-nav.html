@@ -4,6 +4,7 @@
     <nav aria-label="Primary">
       @for (link of links; track link.path) {
         <a
+          mat-button
           [routerLink]="link.path"
           routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: link.exact }"
@@ -12,6 +13,7 @@
       }
     </nav>
     <button
+      mat-icon-button
       type="button"
       class="nav-burger"
       aria-label="Menu"
@@ -32,6 +34,7 @@
   <div class="nav-panel" role="menu" (click)="$event.stopPropagation()">
     @for (link of links; track link.path) {
       <a
+        mat-button
         role="menuitem"
         [routerLink]="link.path"
         routerLinkActive="active"

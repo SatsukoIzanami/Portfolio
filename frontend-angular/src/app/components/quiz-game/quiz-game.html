@@ -1,10 +1,12 @@
 <div class="quiz-container">
   @if (currentQuestion() < questions.length) {
-    <div class="quiz-question-container">
+    <mat-card class="quiz-question-container">
       <h3 class="quiz-question">{{ questions[currentQuestion()].question }}</h3>
+      <mat-progress-bar mode="determinate" [value]="progressPercent()"></mat-progress-bar>
       <div class="quiz-options">
         @for (opt of questions[currentQuestion()].options; track $index) {
           <button
+            mat-stroked-button
             type="button"
             class="quiz-option"
             [ngClass]="optionClass($index)"
@@ -18,21 +20,23 @@
       <div class="quiz-actions">
         <span class="quiz-progress">Question {{ currentQuestion() + 1 }} of {{ questions.length }}</span>
         <button
+          mat-raised-button
           type="button"
           class="quiz-button primary"
+          color="primary"
           [disabled]="!answered()"
           (click)="next()"
         >
           {{ currentQuestion() === questions.length - 1 ? 'Finish' : 'Next' }}
         </button>
       </div>
-    </div>
+    </mat-card>
   } @else {
-    <div class="quiz-score show">
+    <mat-card class="quiz-score show">
       <h3>Quiz Complete!</h3>
       <div class="quiz-score-display">{{ score() }} / {{ questions.length }}</div>
       <p class="quiz-score-text">{{ resultMessage() }}</p>
-      <button type="button" class="quiz-button primary" (click)="restart()">Try Again</button>
-    </div>
+      <button mat-raised-button type="button" class="quiz-button primary" color="primary" (click)="restart()">Try Again</button>
+    </mat-card>
   }
 </div>

@@ -12,3 +12,26 @@
   box-shadow: none;
   padding: 16px;
 }
+
+:host ::ng-deep .quiz-option.mdc-button {
+  --mdc-outlined-button-outline-color: rgba(125, 211, 252, 0.55);
+  --mdc-outlined-button-label-text-color: #eaf3ff;
+  color: #eaf3ff !important;
+  background: rgba(15, 23, 42, 0.45);
+}
+
+:host ::ng-deep .quiz-option.mdc-button:hover {
+  --mdc-outlined-button-outline-color: rgba(125, 211, 252, 0.9);
+  background: rgba(30, 58, 138, 0.25);
+}
+
+:host ::ng-deep .quiz-button.primary.mdc-button {
+  --mdc-filled-button-container-color: #67e8f9;
+  --mdc-filled-button-label-text-color: #0b1220;
+  color: #0b1220 !important;
+  font-weight: 600;
+}
+
+:host ::ng-deep .quiz-question-container .mdc-linear-progress__bar-inner {
+  border-color: #60a5fa;
+}

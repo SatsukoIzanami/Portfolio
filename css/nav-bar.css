@@ -61,6 +61,27 @@ app-nav nav a.active {
     background: #0a1224;
 }
 
+app-nav nav a[mat-button],
+app-nav .nav-panel a[mat-button] {
+    --mdc-text-button-label-text-color: var(--text, #e5e7eb);
+    color: var(--text, #e5e7eb);
+    border: 1px solid transparent;
+    border-radius: 10px;
+}
+
+app-nav nav a[mat-button]:hover,
+app-nav .nav-panel a[mat-button]:hover {
+    border-color: #2a4478;
+    background: rgba(42, 68, 120, 0.22);
+}
+
+app-nav nav a[mat-button].active,
+app-nav .nav-panel a[mat-button].active {
+    border-color: #6ee7f5;
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(122, 162, 255, 0.2));
+    box-shadow: 0 6px 14px rgba(56, 189, 248, 0.22);
+}
+
 /* burger button */
 app-nav .nav-burger {
     display: none;

@@ -21,6 +21,34 @@
   --mdc-outlined-text-field-input-text-placeholder-color: rgba(203, 213, 225, 0.82);
 }
 
+:host ::ng-deep .contact-form-wrapper .mat-mdc-text-field-wrapper {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+:host ::ng-deep .contact-form-wrapper .mat-mdc-input-element {
+  color: #f8fbff !important;
+}
+
+:host ::ng-deep .contact-form-wrapper .mat-mdc-input-element::placeholder {
+  color: rgba(203, 213, 225, 0.85) !important;
+}
+
+:host ::ng-deep .contact-form-wrapper .mdc-floating-label {
+  color: #dbeafe !important;
+}
+
+:host ::ng-deep .contact-form-wrapper .mdc-notched-outline__leading,
+:host ::ng-deep .contact-form-wrapper .mdc-notched-outline__notch,
+:host ::ng-deep .contact-form-wrapper .mdc-notched-outline__trailing {
+  border-color: rgba(186, 230, 253, 0.72) !important;
+}
+
+:host ::ng-deep .contact-form-wrapper .mdc-text-field--focused .mdc-notched-outline__leading,
+:host ::ng-deep .contact-form-wrapper .mdc-text-field--focused .mdc-notched-outline__notch,
+:host ::ng-deep .contact-form-wrapper .mdc-text-field--focused .mdc-notched-outline__trailing {
+  border-color: #7dd3fc !important;
+}
+
 .contact-form-actions {
   display: flex;
   gap: 10px;

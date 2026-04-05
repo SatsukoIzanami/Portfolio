@@ -305,12 +305,27 @@ interactive-showcase {
     margin-top: 24px;
 }
 
+.interactive-showcase-cta-link.mat-mdc-outlined-button {
+    --mdc-outlined-button-outline-color: rgba(125, 211, 252, 0.55);
+    --mdc-outlined-button-label-text-color: #eaf7ff;
+    color: #eaf7ff !important;
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.28), rgba(122, 162, 255, 0.26));
+    border-color: rgba(125, 211, 252, 0.65);
+    box-shadow: 0 10px 24px rgba(56, 189, 248, 0.2);
+}
+
 .interactive-showcase-cta-link:hover {
     border-color: var(--brand, #6ee7f5);
     background: linear-gradient(180deg, #0f172a, #111a2e);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(110, 231, 245, 0.2);
     text-decoration: none;
+}
+
+.interactive-showcase-cta-link.mat-mdc-outlined-button:hover {
+    --mdc-outlined-button-outline-color: #7dd3fc;
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.38), rgba(122, 162, 255, 0.34));
+    box-shadow: 0 12px 28px rgba(56, 189, 248, 0.28);
 }
 
 .interactive-showcase-cta-container {

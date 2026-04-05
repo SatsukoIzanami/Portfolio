@@ -16,3 +16,38 @@
 :host ::ng-deep .encoder-message-field .mat-mdc-form-field {
   width: 100%;
 }
+
+:host ::ng-deep .encoder-shift-field .mat-mdc-text-field-wrapper,
+:host ::ng-deep .encoder-message-field .mat-mdc-text-field-wrapper {
+  background: rgba(17, 24, 39, 0.55);
+}
+
+:host ::ng-deep .encoder-shift-field .mdc-floating-label,
+:host ::ng-deep .encoder-message-field .mdc-floating-label {
+  color: #dbeafe !important;
+}
+
+:host ::ng-deep .encoder-shift-field .mat-mdc-input-element,
+:host ::ng-deep .encoder-message-field .mat-mdc-input-element {
+  color: #f8fbff !important;
+}
+
+:host ::ng-deep .encoder-shift-field .mdc-notched-outline__leading,
+:host ::ng-deep .encoder-shift-field .mdc-notched-outline__notch,
+:host ::ng-deep .encoder-shift-field .mdc-notched-outline__trailing,
+:host ::ng-deep .encoder-message-field .mdc-notched-outline__leading,
+:host ::ng-deep .encoder-message-field .mdc-notched-outline__notch,
+:host ::ng-deep .encoder-message-field .mdc-notched-outline__trailing {
+  border-color: rgba(125, 211, 252, 0.55) !important;
+}
+
+:host ::ng-deep .encoder-info-box.mdc-card {
+  background: rgba(122, 162, 255, 0.06);
+  border: 1px solid #1a2440;
+  box-shadow: none;
+  color: #9aa4b2;
+}
+
+:host ::ng-deep .encoder-info-box strong {
+  color: #6ee7f5;
+}

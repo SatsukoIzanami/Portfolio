@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { buildInfo } from './build-info';
 import { PortfolioNav } from './layout/portfolio-nav/portfolio-nav';
 
 @Component({
@@ -8,4 +9,6 @@ import { PortfolioNav } from './layout/portfolio-nav/portfolio-nav';
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App {}
+export class App {
+  readonly buildInfo = buildInfo;
+}

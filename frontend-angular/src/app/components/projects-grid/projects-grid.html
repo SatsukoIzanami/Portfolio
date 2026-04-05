@@ -10,7 +10,7 @@
       <p class="projects-grid-desc">No projects found.</p>
     }
     @for (p of items(); track $index) {
-      <article class="projects-grid-card">
+      <mat-card class="projects-grid-card">
         @if (p.img) {
           <img
             class="projects-grid-media"
@@ -25,7 +25,7 @@
           <h3 class="projects-grid-title">{{ p.name || 'Untitled Project' }}</h3>
           <p class="projects-grid-desc">{{ p.desc }}</p>
         </div>
-      </article>
+      </mat-card>
     }
   </section>
 }

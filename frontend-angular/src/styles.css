@@ -1,3 +1,5 @@
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
 /* Portfolio theme + components (legacy Vite/CSS files) */
 @import url('../../css/theme.css');
 @import url('../../css/nav-bar.css');

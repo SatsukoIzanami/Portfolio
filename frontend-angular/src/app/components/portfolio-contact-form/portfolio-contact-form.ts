@@ -1,6 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { map, startWith } from 'rxjs';
 import {
   contactEmailValidator,
   contactFieldError,
@@ -13,12 +19,20 @@ import {
 
 @Component({
   selector: 'app-portfolio-contact-form',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSnackBarModule
+  ],
   templateUrl: './portfolio-contact-form.html',
   styleUrl: './portfolio-contact-form.css'
 })
 export class PortfolioContactForm {
   private readonly fb = inject(FormBuilder);
+  private readonly snackBar = inject(MatSnackBar);
 
   readonly contactFieldError = contactFieldError;
 
@@ -30,31 +44,27 @@ export class PortfolioContactForm {
     message: ['', [Validators.required, contactMessageValidator]]
   });
 
-  submitted = false;
-  formMessage = '';
-  formSuccess = false;
-
-  wordCount(): number {
-    const v = this.form.get('message')?.value || '';
-    return countWords(v);
-  }
+  readonly messageWordCount = toSignal(
+    this.form.controls.message.valueChanges.pipe(
+      startWith(this.form.controls.message.value ?? ''),
+      map((value) => countWords(value ?? ''))
+    ),
+    { initialValue: 0 }
+  );
 
   submit(): void {
-    this.formMessage = '';
-    this.formSuccess = false;
     if (this.form.invalid) {
-      this.submitted = true;
       this.form.markAllAsTouched();
-      this.formMessage = 'Please fix the highlighted fields and try again.';
+      this.snackBar.open('Please fix the highlighted fields and try again.', 'Close', {
+        duration: 3500
+      });
       return;
     }
-    this.submitted = false;
     const data = this.form.getRawValue();
     console.log('Contact form submission:', data);
-    this.formMessage =
-      'Thank you! Your message has been sent (demo only – no email was actually sent).';
-    this.formSuccess = true;
+    this.snackBar.open('Thank you! Your message has been sent (demo only).', 'Close', {
+      duration: 3500
+    });
     this.form.reset();
-    this.submitted = false;
   }
 }

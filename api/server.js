@@ -54,6 +54,18 @@ app.get("/api/projects", async (_request, result) => {
     }
 });
 
+app.get("/api/about", async (_request, result) => {
+    try {
+        const jsonPath = path.join(__dirname, "..", "data", "about.json");
+        const raw = await fsp.readFile(jsonPath, "utf-8");
+        const data = JSON.parse(raw);
+        result.json(data);
+    } catch (err) {
+        console.error("API Error:", err);
+        result.status(500).json({ error: String(err?.message || err) });
+    }
+});
+
 // SPA fallback (Angular) — do not swallow /api or /data
 app.use((req, res, next) => {
     if (req.path.startsWith("/api") || req.path.startsWith("/data")) {

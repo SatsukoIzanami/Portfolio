@@ -77,7 +77,7 @@ app-portfolio-contact-form {
     gap: 0.35rem;
 }
 
-.contact-form-field label {
+.contact-form-field > label {
     font-size: 0.82rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -88,15 +88,15 @@ app-portfolio-contact-form {
     gap: 0.5rem;
 }
 
-.contact-form-field label span.hint {
+.contact-form-field > label span.hint {
     font-size: 0.72rem;
     text-transform: none;
     letter-spacing: 0;
     color: #6b7280;
 }
 
-.contact-form-field input,
-.contact-form-field textarea {
+.contact-form-field > input,
+.contact-form-field > textarea {
     width: 100%;
     min-width: 0;
     font: inherit;
@@ -114,20 +114,20 @@ app-portfolio-contact-form {
     box-sizing: border-box;
 }
 
-.contact-form-field input::placeholder,
-.contact-form-field textarea::placeholder {
+.contact-form-field > input::placeholder,
+.contact-form-field > textarea::placeholder {
     color: #6b7280;
 }
 
-.contact-form-field input:focus,
-.contact-form-field textarea:focus {
+.contact-form-field > input:focus,
+.contact-form-field > textarea:focus {
     border-color: var(--contact-border-focus);
     box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.7);
     background-color: rgba(15, 23, 42, 0.95);
     transform: translateY(-1px);
 }
 
-.contact-form-field textarea {
+.contact-form-field > textarea {
     min-height: 140px;
     resize: vertical;
     line-height: 1.5;
@@ -139,8 +139,8 @@ app-portfolio-contact-form {
     color: var(--contact-error);
 }
 
-.contact-form-field.is-invalid input,
-.contact-form-field.is-invalid textarea {
+.contact-form-field.is-invalid > input,
+.contact-form-field.is-invalid > textarea {
     border-color: var(--contact-error);
     box-shadow: 0 0 0 1px rgba(248, 113, 113, 0.9);
 }

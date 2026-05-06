@@ -17,28 +17,24 @@ app.use(
             "http://127.0.0.1:5500",
             "http://localhost:5500",
             "http://localhost:5173",
-            "http://localhost:4200",
             "https://satsukoizanami.github.io"
         ]
     })
 );
 
-// Prefer Angular production build, then repo root (legacy static + /data).
-const angularBrowserDistPath = path.join(
-    __dirname,
-    "../frontend-angular/dist/frontend-angular/browser"
-);
+// Prefer React production build, else repo root (legacy static + /data).
+const reactDistPath = path.join(__dirname, "../frontend-react/dist");
 const repoRoot = path.join(__dirname, "..");
-const staticRoot = fs.existsSync(angularBrowserDistPath) ? angularBrowserDistPath : repoRoot;
+const staticRoot = fs.existsSync(reactDistPath) ? reactDistPath : repoRoot;
 
-if (fs.existsSync(angularBrowserDistPath)) {
-    console.log(`Static: Angular build from ${angularBrowserDistPath}`);
+if (fs.existsSync(reactDistPath)) {
+    console.log(`Static: React build from ${reactDistPath}`);
 } else {
-    console.log(`Static: repo root ${repoRoot} (run npm run build:ng for SPA)`);
+    console.log(`Static: repo root ${repoRoot} (run npm run build:react for SPA)`);
 }
 
 app.use(express.static(staticRoot));
-// about.json and other JSON under /data (always from repo, even when SPA is Angular dist)
+// about.json and other JSON under /data (always from repo)
 app.use("/data", express.static(path.join(repoRoot, "data")));
 
 // api endpoint read
@@ -66,7 +62,7 @@ app.get("/api/about", async (_request, result) => {
     }
 });
 
-// SPA fallback (Angular) — do not swallow /api or /data
+// SPA fallback — do not swallow /api or /data
 app.use((req, res, next) => {
     if (req.path.startsWith("/api") || req.path.startsWith("/data")) {
         return next();

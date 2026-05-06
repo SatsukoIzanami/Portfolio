@@ -1,15 +1,17 @@
 {
     "name": "new-portfolio",
     "version": "1.0.0",
-    "description": "Portfolio API + Angular SPA",
+    "description": "Portfolio API + React SPA",
     "type": "module",
     "main": "api/server.js",
     "scripts": {
-        "dev:ng": "npm --prefix frontend-angular start",
-        "build:ng": "npm --prefix frontend-angular run build",
+        "dev": "npm --prefix frontend-react run dev",
+        "build": "npm --prefix frontend-react run build",
+        "dev:react": "npm --prefix frontend-react run dev",
+        "build:react": "npm --prefix frontend-react run build",
         "start": "node api/server.js",
         "start:dotnet": "dotnet run --project Portfolio.Api --launch-profile http",
-        "test": "echo \"No root tests (use frontend-angular for ng test)\" && exit 0"
+        "test": "echo \"No root tests (add tests in frontend-react as needed)\" && exit 0"
     },
     "author": "Jessica Lecker",
     "license": "ISC",

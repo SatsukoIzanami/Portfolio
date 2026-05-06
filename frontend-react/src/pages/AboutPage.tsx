@@ -57,7 +57,10 @@ export default function AboutPage() {
                         <div>{it.label}</div>
                         <div>{it.value}/3</div>
                         <div className="skills-bar">
-                          <progress max={100} value={(Number(it.value || 0) / 3) * 100} />
+                          <div
+                            className="skills-fill"
+                            style={{ width: `${(Number(it.value || 0) / 3) * 100}%` }}
+                          />
                         </div>
                       </div>
                     ))}

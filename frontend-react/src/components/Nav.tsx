@@ -13,7 +13,7 @@ export default function Nav() {
   const [sheetOpen, setSheetOpen] = useState(false);
 
   return (
-    <>
+    <div className="portfolio-nav">
       <header>
         <div className="nav-wrap">
           <Link className="nav-brand" to="/" onClick={() => setSheetOpen(false)}>
@@ -46,6 +46,6 @@ export default function Nav() {
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 }

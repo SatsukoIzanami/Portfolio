@@ -1,24 +1,17 @@
 {
     "name": "new-portfolio",
     "version": "1.0.0",
-    "description": "Portfolio API + React SPA",
-    "type": "module",
-    "main": "api/server.js",
+    "description": "Portfolio .NET API + React SPA",
+    "private": true,
     "scripts": {
         "dev": "npm --prefix frontend-react run dev",
         "build": "npm --prefix frontend-react run build",
         "dev:react": "npm --prefix frontend-react run dev",
         "build:react": "npm --prefix frontend-react run build",
-        "start": "node api/server.js",
-        "start:dotnet": "dotnet run --project Portfolio.Api --launch-profile http",
+        "start": "dotnet run --project Portfolio.Api --launch-profile http",
+        "start:api": "dotnet run --project Portfolio.Api --launch-profile http",
         "test": "echo \"No root tests (add tests in frontend-react as needed)\" && exit 0"
     },
     "author": "Jessica Lecker",
-    "license": "ISC",
-    "dependencies": {
-        "cors": "^2.8.5",
-        "express": "^5.1.0",
-        "nodemon": "^3.1.10"
-    },
-    "devDependencies": {}
+    "license": "ISC"
 }

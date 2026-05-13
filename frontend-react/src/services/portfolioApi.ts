@@ -1,6 +1,6 @@
 import type { AboutData, Project } from "../types/portfolio";
 
-const RENDER_ORIGIN = "https://portfolio-awnu.onrender.com";
+const RENDER_ORIGIN = "https://portfolio-new-19iq.onrender.com";
 const RENDER_API_BASE = `${RENDER_ORIGIN}/api`;
 
 export const getPortfolioApiBase = (): string => {
